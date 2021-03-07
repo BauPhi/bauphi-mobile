@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "LoadingViewController.h"
 
 
 
@@ -24,7 +25,7 @@
     // Override point for customization after application launch.
     
 
-    ViewController *timeline = [[ViewController alloc] init];
+    LoadingViewController *timeline = [[LoadingViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] init];
     
     [nav setViewControllers:@[timeline] animated:NO];

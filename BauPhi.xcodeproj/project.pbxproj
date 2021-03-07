@@ -13,6 +13,10 @@
 		2FEC5E5E2425523B0037DB3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FEC5E5D2425523B0037DB3B /* Assets.xcassets */; };
 		2FEC5E612425523B0037DB3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FEC5E5F2425523B0037DB3B /* LaunchScreen.storyboard */; };
 		2FEC5E642425523B0037DB3B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC5E632425523B0037DB3B /* main.m */; };
+		8DF7B82325F5541A0077DF06 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7B82225F5541A0077DF06 /* SignUpViewController.m */; };
+		8DF7B82A25F554790077DF06 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7B82925F554790077DF06 /* SignInViewController.m */; };
+		8DF7B83025F5551D0077DF06 /* TimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7B82F25F5551D0077DF06 /* TimeLineViewController.m */; };
+		8DF7B83B25F556320077DF06 /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7B83A25F556310077DF06 /* LoadingViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +31,15 @@
 		2FEC5E602425523B0037DB3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2FEC5E622425523B0037DB3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2FEC5E632425523B0037DB3B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8DF7B82025F553BE0077DF06 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		8DF7B82125F5541A0077DF06 /* SignUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		8DF7B82225F5541A0077DF06 /* SignUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		8DF7B82825F554790077DF06 /* SignInViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
+		8DF7B82925F554790077DF06 /* SignInViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
+		8DF7B82E25F5551D0077DF06 /* TimeLineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeLineViewController.h; sourceTree = "<group>"; };
+		8DF7B82F25F5551D0077DF06 /* TimeLineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeLineViewController.m; sourceTree = "<group>"; };
+		8DF7B83925F556310077DF06 /* LoadingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadingViewController.h; sourceTree = "<group>"; };
+		8DF7B83A25F556310077DF06 /* LoadingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadingViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,18 +72,51 @@
 		2FEC5E502425523A0037DB3B /* fal */ = {
 			isa = PBXGroup;
 			children = (
+				8DF7B83225F555A80077DF06 /* Base Controllers */,
+				8DF7B82D25F5550C0077DF06 /* Tab Bar Controllers */,
+				8DF7B82625F5541E0077DF06 /* Sign */,
 				2FEC5E512425523A0037DB3B /* AppDelegate.h */,
 				2FEC5E522425523A0037DB3B /* AppDelegate.m */,
 				2FEC5E542425523A0037DB3B /* SceneDelegate.h */,
 				2FEC5E552425523A0037DB3B /* SceneDelegate.m */,
-				2FEC5E572425523A0037DB3B /* ViewController.h */,
-				2FEC5E582425523A0037DB3B /* ViewController.m */,
 				2FEC5E5D2425523B0037DB3B /* Assets.xcassets */,
 				2FEC5E5F2425523B0037DB3B /* LaunchScreen.storyboard */,
 				2FEC5E622425523B0037DB3B /* Info.plist */,
 				2FEC5E632425523B0037DB3B /* main.m */,
+				8DF7B82025F553BE0077DF06 /* Config.h */,
 			);
 			path = fal;
+			sourceTree = "<group>";
+		};
+		8DF7B82625F5541E0077DF06 /* Sign */ = {
+			isa = PBXGroup;
+			children = (
+				8DF7B82125F5541A0077DF06 /* SignUpViewController.h */,
+				8DF7B82225F5541A0077DF06 /* SignUpViewController.m */,
+				8DF7B82825F554790077DF06 /* SignInViewController.h */,
+				8DF7B82925F554790077DF06 /* SignInViewController.m */,
+			);
+			path = Sign;
+			sourceTree = "<group>";
+		};
+		8DF7B82D25F5550C0077DF06 /* Tab Bar Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8DF7B82E25F5551D0077DF06 /* TimeLineViewController.h */,
+				8DF7B82F25F5551D0077DF06 /* TimeLineViewController.m */,
+			);
+			path = "Tab Bar Controllers";
+			sourceTree = "<group>";
+		};
+		8DF7B83225F555A80077DF06 /* Base Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2FEC5E572425523A0037DB3B /* ViewController.h */,
+				2FEC5E582425523A0037DB3B /* ViewController.m */,
+				8DF7B83925F556310077DF06 /* LoadingViewController.h */,
+				8DF7B83A25F556310077DF06 /* LoadingViewController.m */,
+			);
+			path = "Base Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,10 +188,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DF7B83025F5551D0077DF06 /* TimeLineViewController.m in Sources */,
 				2FEC5E592425523A0037DB3B /* ViewController.m in Sources */,
+				8DF7B82325F5541A0077DF06 /* SignUpViewController.m in Sources */,
 				2FEC5E532425523A0037DB3B /* AppDelegate.m in Sources */,
 				2FEC5E642425523B0037DB3B /* main.m in Sources */,
+				8DF7B82A25F554790077DF06 /* SignInViewController.m in Sources */,
 				2FEC5E562425523A0037DB3B /* SceneDelegate.m in Sources */,
+				8DF7B83B25F556320077DF06 /* LoadingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
