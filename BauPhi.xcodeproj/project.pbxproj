@@ -17,6 +17,7 @@
 		8DF7B82A25F554790077DF06 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7B82925F554790077DF06 /* SignInViewController.m */; };
 		8DF7B83025F5551D0077DF06 /* TimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7B82F25F5551D0077DF06 /* TimeLineViewController.m */; };
 		8DF7B83B25F556320077DF06 /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7B83A25F556310077DF06 /* LoadingViewController.m */; };
+		8DF7B842260A6F260077DF06 /* TimeLineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7B841260A6F260077DF06 /* TimeLineTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,8 @@
 		8DF7B82F25F5551D0077DF06 /* TimeLineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeLineViewController.m; sourceTree = "<group>"; };
 		8DF7B83925F556310077DF06 /* LoadingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadingViewController.h; sourceTree = "<group>"; };
 		8DF7B83A25F556310077DF06 /* LoadingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadingViewController.m; sourceTree = "<group>"; };
+		8DF7B840260A6F260077DF06 /* TimeLineTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeLineTableViewCell.h; sourceTree = "<group>"; };
+		8DF7B841260A6F260077DF06 /* TimeLineTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeLineTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +75,7 @@
 		2FEC5E502425523A0037DB3B /* fal */ = {
 			isa = PBXGroup;
 			children = (
+				8DF7B83F260A6F010077DF06 /* TableViewCell */,
 				8DF7B83225F555A80077DF06 /* Base Controllers */,
 				8DF7B82D25F5550C0077DF06 /* Tab Bar Controllers */,
 				8DF7B82625F5541E0077DF06 /* Sign */,
@@ -117,6 +121,15 @@
 				8DF7B83A25F556310077DF06 /* LoadingViewController.m */,
 			);
 			path = "Base Controllers";
+			sourceTree = "<group>";
+		};
+		8DF7B83F260A6F010077DF06 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				8DF7B840260A6F260077DF06 /* TimeLineTableViewCell.h */,
+				8DF7B841260A6F260077DF06 /* TimeLineTableViewCell.m */,
+			);
+			path = TableViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,6 +205,7 @@
 				2FEC5E592425523A0037DB3B /* ViewController.m in Sources */,
 				8DF7B82325F5541A0077DF06 /* SignUpViewController.m in Sources */,
 				2FEC5E532425523A0037DB3B /* AppDelegate.m in Sources */,
+				8DF7B842260A6F260077DF06 /* TimeLineTableViewCell.m in Sources */,
 				2FEC5E642425523B0037DB3B /* main.m in Sources */,
 				8DF7B82A25F554790077DF06 /* SignInViewController.m in Sources */,
 				2FEC5E562425523A0037DB3B /* SceneDelegate.m in Sources */,

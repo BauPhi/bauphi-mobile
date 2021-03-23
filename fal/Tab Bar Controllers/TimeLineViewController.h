@@ -10,7 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TimeLineViewController : ViewController
+@interface TimeLineViewController : ViewController<UITableViewDelegate,UITableViewDataSource>{
+    UITableView *table;
+    NSDictionary *dataDic;
+}
+@property (nonatomic, retain) UITableView *table;
+@property (nonatomic, retain) NSDictionary *dataDic;
 
 @end
 
