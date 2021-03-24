@@ -22,6 +22,27 @@
     [self.navigationController pushViewController:moreVc animated:YES];
 }
 
+- (void)notificationHandler:(NSNotification *)notif{
+
+    if ([notif.name isEqualToString:@"OPEN_TAB_CONTENT"]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            ViewController *view = (ViewController*)[[NSClassFromString([self->tabVCs objectAtIndex: [[notif.userInfo objectForKey:@"page"] intValue]]) alloc] init];
+//            if([[notif.userInfo objectForKey:@"page"] intValue] == 4){
+//                ProfileViewController *profile = [[ProfileViewController alloc] init];
+//                [profile setUserId: [FIRAuth auth].currentUser.uid];
+//                [self.navigationController pushViewController:profile animated:NO];
+//            }
+//            else{
+                [self.navigationController pushViewController:view animated:NO];
+ //           }
+               
+                
+            
+        });
+    }
+
+}
+
 /*
 #pragma mark - Navigation
 

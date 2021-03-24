@@ -20,9 +20,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setPageTitle:@"Anasayfa"];
-    table = [[UITableView alloc] initWithFrame:CGRectMake(0, (3*GRID_LAYOUT_HEIGTH)/2, SCREEN_WIDTH, SCREEN_HEIGHT-2*GRID_LAYOUT_HEIGTH)];
+    [self generateTabbar];
+    table = [[UITableView alloc] initWithFrame:CGRectMake(0, (2*GRID_LAYOUT_HEIGTH), SCREEN_WIDTH, SCREEN_HEIGHT-3*GRID_LAYOUT_HEIGTH)];
     table.delegate = self;
     table.dataSource = self;
+//    table.backgroundColor = [UIColor greenColor];
     [self.view addSubview:table];
 }
 

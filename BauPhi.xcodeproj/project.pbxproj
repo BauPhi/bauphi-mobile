@@ -18,6 +18,10 @@
 		8DF7B83025F5551D0077DF06 /* TimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7B82F25F5551D0077DF06 /* TimeLineViewController.m */; };
 		8DF7B83B25F556320077DF06 /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7B83A25F556310077DF06 /* LoadingViewController.m */; };
 		8DF7B842260A6F260077DF06 /* TimeLineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7B841260A6F260077DF06 /* TimeLineTableViewCell.m */; };
+		8DF7B848260BCA620077DF06 /* ftab3.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DF7B845260BCA610077DF06 /* ftab3.png */; };
+		8DF7B849260BCA620077DF06 /* ftab1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DF7B846260BCA610077DF06 /* ftab1.png */; };
+		8DF7B84A260BCA620077DF06 /* ftab2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DF7B847260BCA610077DF06 /* ftab2.png */; };
+		8DF7B84D260BCBDB0077DF06 /* filter.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DF7B84C260BCBDB0077DF06 /* filter.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +47,10 @@
 		8DF7B83A25F556310077DF06 /* LoadingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadingViewController.m; sourceTree = "<group>"; };
 		8DF7B840260A6F260077DF06 /* TimeLineTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeLineTableViewCell.h; sourceTree = "<group>"; };
 		8DF7B841260A6F260077DF06 /* TimeLineTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeLineTableViewCell.m; sourceTree = "<group>"; };
+		8DF7B845260BCA610077DF06 /* ftab3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ftab3.png; sourceTree = "<group>"; };
+		8DF7B846260BCA610077DF06 /* ftab1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ftab1.png; sourceTree = "<group>"; };
+		8DF7B847260BCA610077DF06 /* ftab2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ftab2.png; sourceTree = "<group>"; };
+		8DF7B84C260BCBDB0077DF06 /* filter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = filter.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +83,7 @@
 		2FEC5E502425523A0037DB3B /* fal */ = {
 			isa = PBXGroup;
 			children = (
+				8DF7B844260BCA550077DF06 /* icons */,
 				8DF7B83F260A6F010077DF06 /* TableViewCell */,
 				8DF7B83225F555A80077DF06 /* Base Controllers */,
 				8DF7B82D25F5550C0077DF06 /* Tab Bar Controllers */,
@@ -130,6 +139,17 @@
 				8DF7B841260A6F260077DF06 /* TimeLineTableViewCell.m */,
 			);
 			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		8DF7B844260BCA550077DF06 /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				8DF7B846260BCA610077DF06 /* ftab1.png */,
+				8DF7B847260BCA610077DF06 /* ftab2.png */,
+				8DF7B845260BCA610077DF06 /* ftab3.png */,
+				8DF7B84C260BCBDB0077DF06 /* filter.png */,
+			);
+			path = icons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,8 +209,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DF7B84A260BCA620077DF06 /* ftab2.png in Resources */,
+				8DF7B84D260BCBDB0077DF06 /* filter.png in Resources */,
 				2FEC5E612425523B0037DB3B /* LaunchScreen.storyboard in Resources */,
 				2FEC5E5E2425523B0037DB3B /* Assets.xcassets in Resources */,
+				8DF7B849260BCA620077DF06 /* ftab1.png in Resources */,
+				8DF7B848260BCA620077DF06 /* ftab3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
