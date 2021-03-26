@@ -66,7 +66,18 @@
     eventNameField.placeholder = @"İlan İsmi";
     [self.view addSubview:eventNameField];
     
+    eventNameField = [[UITextField alloc] initWithFrame:CGRectMake(10, (8*grid), SCREEN_WIDTH-20, grid)];
+    eventNameField.backgroundColor =LIGHT_BACKGROUND_COLOR;
+    eventNameField.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
+    eventNameField.placeholder = @"İlan İsmi";
+    [self.view addSubview:eventNameField];
     
+    contactNumberField = [[UITextField alloc] initWithFrame:CGRectMake(10, (10*grid), SCREEN_WIDTH-20, grid)];
+    contactNumberField.backgroundColor =LIGHT_BACKGROUND_COLOR;
+    contactNumberField.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
+    contactNumberField.placeholder = @"İletişim Numarası";
+    contactNumberField.keyboardType = UIKeyboardTypeNumberPad;
+    [self.view addSubview:contactNumberField];
     
 }
 
