@@ -7,10 +7,13 @@
 //
 
 #import "ViewController.h"
+#import <AVFoundation/AVFoundation.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+#import "QBImagePickerController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AddEventViewController : ViewController<UIPickerViewDelegate,UIPickerViewDataSource>{
+@interface AddEventViewController : ViewController<UIPickerViewDelegate,UIPickerViewDataSource,UIImagePickerControllerDelegate,QBImagePickerControllerDelegate>{
     UIImageView *photo1View;
     UIImageView *photo2View;
     UIPickerView *picker;

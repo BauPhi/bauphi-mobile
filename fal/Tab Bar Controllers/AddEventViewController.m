@@ -142,5 +142,158 @@
 }
 
 
+#pragma mark - Photo Activity Handlers
+
+
+-(void)showCameraWithFrontCamera:(BOOL)flag {
+    self.captureSession = [[AVCaptureSession alloc]init];
+    self.captureSession.sessionPreset = AVCaptureSessionPresetPhoto;
+    AVCaptureDevice *captureDevice;
+    if(flag)  {
+      captureDevice= [self frontCamera];
+    }
+    else {
+      captureDevice= [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    }
+    NSError *error = nil;
+    AVCaptureDeviceInput *input =   [AVCaptureDeviceInput deviceInputWithDevice:captureDevice error:&error];
+    
+
+    [self.captureSession addInput:input];
+    self.stillImageOutput = [AVCaptureStillImageOutput new];
+    self.stillImageOutput.outputSettings = @{AVVideoCodecKey:AVVideoCodecJPEG};
+    [self.captureSession addOutput: self.stillImageOutput];
+    self.videoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:self.captureSession];
+
+    self.videoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+    self.videoPreviewLayer.connection.videoOrientation = AVCaptureVideoOrientationPortrait;
+    [self.viewCamera.layer addSublayer:self.videoPreviewLayer];
+    [self.captureSession startRunning];
+    self.videoPreviewLayer.frame = self.viewCamera.bounds;
+    
+    [imageHiddenView addSubview:viewCamera];
+}
+
+
+- (AVCaptureDevice *)frontCamera {
+    NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
+    for (AVCaptureDevice *device in devices) {
+        if ([device position] == AVCaptureDevicePositionFront) {
+            return device;
+        }
+    }
+    return nil;
+}
+
+
+- (void)btnCaptureImagePressed:(id)sender {
+
+    AVCaptureConnection * videoConnection =  [self.stillImageOutput connectionWithMediaType:AVMediaTypeVideo];
+
+    [self.stillImageOutput captureStillImageAsynchronouslyFromConnection:videoConnection completionHandler:^(CMSampleBufferRef  _Nullable sampleBuffer, NSError * _Nullable error) {
+        NSData *imageData =  [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:sampleBuffer];
+        [self setImageToView:imageData];
+//        self.videoPreviewLayer.hidden = YES;
+
+    }];
+
+}
+
+-(void)setImageToView:(NSData *)imageData{
+    UIImage *fullBtnImage = [UIImage imageNamed:@"refresh.png"];
+    if(!img1){
+        image1 = [[UIImage alloc]initWithData: imageData];
+        UIImageWriteToSavedPhotosAlbum(image1, nil, nil, nil);
+        imageView1.image = image1;
+        [imageBtn1 setImage:fullBtnImage forState:UIControlStateNormal];
+        img1=TRUE;
+    }else if(!img2){
+        image2 = [[UIImage alloc]initWithData: imageData];
+        UIImageWriteToSavedPhotosAlbum(image2, nil, nil, nil);
+        imageView2.image = image2;
+        [imageBtn2 setImage:fullBtnImage forState:UIControlStateNormal];
+        img2=TRUE;
+    }else if(!img3){
+        image3 = [[UIImage alloc]initWithData: imageData];
+        UIImageWriteToSavedPhotosAlbum(image3, nil, nil, nil);
+        imageView3.image = image3;
+        [imageBtn3 setImage:fullBtnImage forState:UIControlStateNormal];
+        img3=TRUE;
+    }else if(!img4){
+        image4 = [[UIImage alloc]initWithData: imageData];
+        UIImageWriteToSavedPhotosAlbum(image4, nil, nil, nil);
+        imageView4.image = image4;
+        [imageBtn4 setImage:fullBtnImage forState:UIControlStateNormal];
+        img4=TRUE;
+    }
+}
+
+
+- (void)selectPhoto:(UIButton *)sender {
+    QBImagePickerController *imagePickerController = [QBImagePickerController new];
+    imagePickerController.delegate = self;
+    imagePickerController.allowsMultipleSelection = YES;
+    imagePickerController.maximumNumberOfSelection = 4;
+    imagePickerController.showsNumberOfSelectedAssets = YES;
+
+    [self presentViewController:imagePickerController animated:YES completion:NULL];
+   
+}
+
+- (void)qb_imagePickerController:(QBImagePickerController *)imagePickerController didFinishPickingAssets:(NSArray *)assets {
+    self.requestOptions = [[PHImageRequestOptions alloc] init];
+    self.requestOptions.resizeMode   = PHImageRequestOptionsResizeModeExact;
+    self.requestOptions.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+    self.requestOptions.synchronous = YES;
+    
+    PHImageManager *manager = [PHImageManager defaultManager];
+    NSMutableArray *images = [NSMutableArray arrayWithCapacity:[assets count]];
+     __block UIImage *ima;
+    
+    for (PHAsset *asset in assets) {
+        // Do something with the asset
+        [manager requestImageForAsset:asset
+                           targetSize:PHImageManagerMaximumSize
+                          contentMode:PHImageContentModeDefault
+                              options:self.requestOptions
+                        resultHandler:^void(UIImage *image, NSDictionary *info) {
+                            ima = image;
+
+                            [images addObject:ima];
+                        }];
+        NSLog(@"images: %@",images);
+    }
+    UIImage *fullBtnImage = [UIImage imageNamed:@"refresh.png"];
+    for(UIImage *img in images){
+        if(!img1){
+            image1 = img;
+            imageView1.image = image1;
+            [imageBtn1 setImage:fullBtnImage forState:UIControlStateNormal];
+            img1=TRUE;
+        }else if(!img2){
+            image2 = img;
+            imageView2.image = image2;
+            [imageBtn2 setImage:fullBtnImage forState:UIControlStateNormal];
+            img2=TRUE;
+        }else if(!img3){
+            image3 = img;
+            imageView3.image = image3;
+            [imageBtn3 setImage:fullBtnImage forState:UIControlStateNormal];
+            img3=TRUE;
+        }else if(!img4){
+            image4 = img;
+            imageView4.image = image4;
+            [imageBtn4 setImage:fullBtnImage forState:UIControlStateNormal];
+            img4=TRUE;
+        }
+    }
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)qb_imagePickerControllerDidCancel:(QBImagePickerController *)imagePickerController {
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+
 
 @end
