@@ -20,11 +20,12 @@
     // Do any additional setup after loading the view.
     [self setPageTitle:@"Anasayfa"];
     [self generateTabbar];
+    double grid = GRID_LAYOUT_HEIGTH/2;
     
     citiesArr=[[NSMutableArray alloc] initWithObjects:@"Adana", @"Ankara" ,@"İstanbul",nil]; //dummy data
     categoryArr=[[NSMutableArray alloc] initWithObjects:@"Ev", @"Eşya Yardımı" ,@"Hayvan Bakımı",nil];
     
-    cityBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, 2*GRID_LAYOUT_HEIGTH, SCREEN_WIDTH-20, GRID_LAYOUT_HEIGTH/2)];
+    cityBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, 4*grid, SCREEN_WIDTH-20,grid)];
     cityBtn.backgroundColor =LIGHT_BACKGROUND_COLOR;
     cityBtn.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
     [cityBtn setTitle:@"Şehir" forState:UIControlStateNormal];
@@ -34,7 +35,7 @@
     [cityBtn addTarget:self action:@selector(subFilterBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:cityBtn];
     
-    categoryBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, (5*GRID_LAYOUT_HEIGTH)/2+10, SCREEN_WIDTH-20, GRID_LAYOUT_HEIGTH/2)];
+    categoryBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, (6*grid), SCREEN_WIDTH-20, grid)];
     categoryBtn.backgroundColor =LIGHT_BACKGROUND_COLOR;
     categoryBtn.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
     [categoryBtn setTitle:@"Kategori" forState:UIControlStateNormal];
@@ -58,6 +59,14 @@
     [pickerBtn addTarget:self action:@selector(pickerBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:picker];
     [self.view addSubview:pickerBtn];
+    
+    eventNameField = [[UITextField alloc] initWithFrame:CGRectMake(10, (8*grid), SCREEN_WIDTH-20, grid)];
+    eventNameField.backgroundColor =LIGHT_BACKGROUND_COLOR;
+    eventNameField.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
+    eventNameField.placeholder = @"İlan İsmi";
+    [self.view addSubview:eventNameField];
+    
+    
     
 }
 

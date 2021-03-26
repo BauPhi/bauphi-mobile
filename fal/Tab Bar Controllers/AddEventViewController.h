@@ -15,6 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
     UIButton *cityBtn;
     UIButton *categoryBtn;
     UIButton *pickerBtn;
+    UITextField *eventNameField;
+    UITextField *contactNumberField;
+    UITextField *notesField;
     NSMutableArray *citiesArr;
     NSMutableArray *categoryArr;
     int pickerSelected;
@@ -25,6 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, retain) UIButton *cityBtn;
 @property (nonatomic, retain) UIButton *categoryBtn;
 @property (nonatomic, retain) UIButton *pickerBtn;
+@property (nonatomic, retain) UITextField *eventNameField;
+@property (nonatomic, retain) UITextField *contactNumberField;
+@property (nonatomic, retain) UITextField *notesField;
 @property (nonatomic, retain) NSMutableArray *citiesArr;
 @property (nonatomic, retain) NSMutableArray *categoryArr;
 
