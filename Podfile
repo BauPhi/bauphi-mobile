@@ -6,5 +6,5 @@ target 'BauPhi' do
   use_frameworks!
 
   # Pods for BauPhi
-
+  pod "QBImagePickerController"
 end
