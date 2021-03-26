@@ -25,6 +25,7 @@
 		8DF7B851260DE1380077DF06 /* LoginPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7B850260DE1380077DF06 /* LoginPresenter.m */; };
 		8DF7B855260DE1480077DF06 /* AuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7B854260DE1480077DF06 /* AuthService.m */; };
 		8DF7B85A260DEF080077DF06 /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7B859260DEF080077DF06 /* AddEventViewController.m */; };
+		8DF7B85F260E0E4D0077DF06 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7B85E260E0E4D0077DF06 /* ProfileViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,8 @@
 		8DF7B854260DE1480077DF06 /* AuthService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthService.m; sourceTree = "<group>"; };
 		8DF7B858260DEF080077DF06 /* AddEventViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddEventViewController.h; sourceTree = "<group>"; };
 		8DF7B859260DEF080077DF06 /* AddEventViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddEventViewController.m; sourceTree = "<group>"; };
+		8DF7B85D260E0E4D0077DF06 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		8DF7B85E260E0E4D0077DF06 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +132,8 @@
 				8DF7B82F25F5551D0077DF06 /* TimeLineViewController.m */,
 				8DF7B858260DEF080077DF06 /* AddEventViewController.h */,
 				8DF7B859260DEF080077DF06 /* AddEventViewController.m */,
+				8DF7B85D260E0E4D0077DF06 /* ProfileViewController.h */,
+				8DF7B85E260E0E4D0077DF06 /* ProfileViewController.m */,
 			);
 			path = "Tab Bar Controllers";
 			sourceTree = "<group>";
@@ -257,6 +262,7 @@
 				8DF7B842260A6F260077DF06 /* TimeLineTableViewCell.m in Sources */,
 				2FEC5E642425523B0037DB3B /* main.m in Sources */,
 				8DF7B82A25F554790077DF06 /* SignInViewController.m in Sources */,
+				8DF7B85F260E0E4D0077DF06 /* ProfileViewController.m in Sources */,
 				2FEC5E562425523A0037DB3B /* SceneDelegate.m in Sources */,
 				8DF7B855260DE1480077DF06 /* AuthService.m in Sources */,
 				8DF7B83B25F556320077DF06 /* LoadingViewController.m in Sources */,
