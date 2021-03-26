@@ -21,6 +21,7 @@
     [self setPageTitle:@"Anasayfa"];
     [self generateTabbar];
     double grid = GRID_LAYOUT_HEIGTH/2;
+    double spaceBetweenForms = GRID_LAYOUT_HEIGTH/4;
     
     citiesArr=[[NSMutableArray alloc] initWithObjects:@"Adana", @"Ankara" ,@"İstanbul",nil]; //dummy data
     categoryArr=[[NSMutableArray alloc] initWithObjects:@"Ev", @"Eşya Yardımı" ,@"Hayvan Bakımı",nil];
@@ -35,7 +36,7 @@
     [cityBtn addTarget:self action:@selector(subFilterBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:cityBtn];
     
-    categoryBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, (6*grid), SCREEN_WIDTH-20, grid)];
+    categoryBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, (5*grid)+spaceBetweenForms, SCREEN_WIDTH-20, grid)];
     categoryBtn.backgroundColor =LIGHT_BACKGROUND_COLOR;
     categoryBtn.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
     [categoryBtn setTitle:@"Kategori" forState:UIControlStateNormal];
@@ -60,25 +61,23 @@
     [self.view addSubview:picker];
     [self.view addSubview:pickerBtn];
     
-    eventNameField = [[UITextField alloc] initWithFrame:CGRectMake(10, (8*grid), SCREEN_WIDTH-20, grid)];
+    eventNameField = [[UITextField alloc] initWithFrame:CGRectMake(10, (7*grid), SCREEN_WIDTH-20, grid)];
     eventNameField.backgroundColor =LIGHT_BACKGROUND_COLOR;
     eventNameField.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
     eventNameField.placeholder = @"İlan İsmi";
     [self.view addSubview:eventNameField];
     
-    eventNameField = [[UITextField alloc] initWithFrame:CGRectMake(10, (8*grid), SCREEN_WIDTH-20, grid)];
-    eventNameField.backgroundColor =LIGHT_BACKGROUND_COLOR;
-    eventNameField.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
-    eventNameField.placeholder = @"İlan İsmi";
-    [self.view addSubview:eventNameField];
-    
-    contactNumberField = [[UITextField alloc] initWithFrame:CGRectMake(10, (10*grid), SCREEN_WIDTH-20, grid)];
+    contactNumberField = [[UITextField alloc] initWithFrame:CGRectMake(10, (8*grid)+spaceBetweenForms, SCREEN_WIDTH-20, grid)];
     contactNumberField.backgroundColor =LIGHT_BACKGROUND_COLOR;
     contactNumberField.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
     contactNumberField.placeholder = @"İletişim Numarası";
     contactNumberField.keyboardType = UIKeyboardTypeNumberPad;
     [self.view addSubview:contactNumberField];
     
+    notesTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, (10*grid), SCREEN_WIDTH-20, 4*grid)];
+    notesTextView.backgroundColor =LIGHT_BACKGROUND_COLOR;
+    notesTextView.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
+    [self.view addSubview:notesTextView];
 }
 
 #pragma mark - Picker View Activity Handlers
