@@ -32,16 +32,15 @@
     gap = 10;
     currPage = NSStringFromClass([self class]);
     
-    
 }
 
 -(void)setPageTitle:(NSString *)pageTitle{
-    yellowView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,SCREEN_WIDTH, (3*GRID_LAYOUT_HEIGTH)/2)];
+    yellowView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,SCREEN_WIDTH, (3*GRID_LAYOUT_HEIGTH)/2-10)];
     yellowView.backgroundColor = COLOR_ONE;
     [self.view addSubview: yellowView];
     pageTitleLbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0,SCREEN_WIDTH, (3*GRID_LAYOUT_HEIGTH)/2)];
     pageTitleLbl.font = TITLE_FONT;
-    pageTitleLbl.text=@"Anasayfa";
+    pageTitleLbl.text=pageTitle;
     pageTitleLbl.textAlignment = NSTextAlignmentCenter;
     pageTitleLbl.textColor = WHITE_COLOR;
     [yellowView addSubview:pageTitleLbl];
@@ -66,9 +65,9 @@
 - (void) generateTabbar{
     
     NSMutableArray *namesArray = [[NSMutableArray alloc] init];
-    [namesArray addObject:@"HABERLER"];
-    [namesArray addObject:@"KAMPANYALAR"];
-    [namesArray addObject:@"BANKACILIK"];
+    [namesArray addObject:@"TimeLine"];
+    [namesArray addObject:@"AddEvent"];
+    [namesArray addObject:@"Profile"];
     
     CGFloat gap = 50;
     CGFloat lblY = gap-70;
@@ -88,29 +87,6 @@
         double centerY = gap/2 - iconSize/2;
         UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(centerX, centerY, iconSize, iconSize)];
         img.image = [UIImage imageNamed:[NSString stringWithFormat:@"ftab%d",i+1]];
-        
-//        if(i==0 && [currPage isEqual:@"TimeLineViewController"]){
-//            img.image = [UIImage imageNamed:[NSString stringWithFormat:@"ftab%d",i+1]];
-//        }else if(i==0 && ![currPage isEqual:@"TimeLineViewController"]){
-//            img.image = [UIImage imageNamed:[NSString stringWithFormat:@"btab%d",i+1]];
-//        }if(i==1 && [currPage isEqual:@"ChatViewController"]){
-//            img.image = [UIImage imageNamed:[NSString stringWithFormat:@"ftab%d",i+1]];
-//        }else if(i==1 && ![currPage isEqual:@"ChatViewController"]){
-//            img.image = [UIImage imageNamed:[NSString stringWithFormat:@"btab%d",i+1]];
-//        }if(i==2 && [currPage isEqual:@"StoreViewController"]){
-//            img.image = [UIImage imageNamed:[NSString stringWithFormat:@"ftab%d",i+1]];
-//        }else if(i==2 && ![currPage isEqual:@"StoreViewController"]){
-//            img.image = [UIImage imageNamed:[NSString stringWithFormat:@"btab%d",i+1]];
-//        }if(i==3 && [currPage isEqual:@"MapViewController"]){
-//            img.image = [UIImage imageNamed:[NSString stringWithFormat:@"ftab%d",i+1]];
-//        }else if(i==3 && ![currPage isEqual:@"MapViewController"]){
-//            img.image = [UIImage imageNamed:[NSString stringWithFormat:@"btab%d",i+1]];
-//        }if(i==4 && [currPage isEqual:@"ProfileViewController"]){
-//            img.image = [UIImage imageNamed:[NSString stringWithFormat:@"ftab%d",i+1]];
-//        }else if(i==4 && ![currPage isEqual:@"ProfileViewController"]){
-//            img.image = [UIImage imageNamed:[NSString stringWithFormat:@"btab%d",i+1]];
-//        }
-        
         img.contentMode = UIViewContentModeScaleAspectFit;
         [btnView addSubview:img];
         

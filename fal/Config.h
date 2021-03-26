@@ -24,10 +24,10 @@
 
 #define TITLE_TEXT_COLOR        ([UIColor colorWithRed:255/255.0 green:126/255.0 blue:71/255.0 alpha:1])
 #define BODY_TEXT_COLOR         ([UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1])
-#define PLACEHOLDER_COLOR       ([UIColor colorWithRed:197/255.0 green:196/255.0 blue:199/255.0 alpha:1])
+#define PLACEHOLDER_COLOR       ([UIColor colorWithRed:199/255.0 green:199/255.0 blue:199/255.0 alpha:1])
 
 #define BACKGROUND_COLOR    ([UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1])
-#define LIGHT_BACKGROUND_COLOR ([UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1])
+#define LIGHT_BACKGROUND_COLOR ([UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1])
 #define TEXT_COLOR          ([UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1])
 #define BORDER_COLOR        ([UIColor colorWithRed:216/255.0 green:216/255.0 blue:216/255.0 alpha:1])
 #define WHITE_COLOR         ([UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1])
