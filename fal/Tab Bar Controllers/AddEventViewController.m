@@ -78,6 +78,17 @@
     notesTextView.backgroundColor =LIGHT_BACKGROUND_COLOR;
     notesTextView.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
     [self.view addSubview:notesTextView];
+    
+    double photoImageViewSize = ((SCREEN_WIDTH -30)/2)* .75;
+    photo1View = [[UIImageView alloc] initWithFrame:CGRectMake(10, 14*grid+spaceBetweenForms, photoImageViewSize, photoImageViewSize)];
+    photo1View.backgroundColor =LIGHT_BACKGROUND_COLOR;
+    photo1View.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
+    [self.view addSubview:photo1View];
+    
+    photo2View = [[UIImageView alloc] initWithFrame:CGRectMake(20+photoImageViewSize, 14*grid+spaceBetweenForms, photoImageViewSize, photoImageViewSize)];
+    photo2View.backgroundColor =LIGHT_BACKGROUND_COLOR;
+    photo2View.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
+    [self.view addSubview:photo2View];
 }
 
 #pragma mark - Picker View Activity Handlers

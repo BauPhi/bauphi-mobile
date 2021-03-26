@@ -11,6 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AddEventViewController : ViewController<UIPickerViewDelegate,UIPickerViewDataSource>{
+    UIImageView *photo1View;
+    UIImageView *photo2View;
     UIPickerView *picker;
     UIButton *cityBtn;
     UIButton *categoryBtn;
@@ -23,7 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
     int pickerSelected;
     int subFilterBtnTag;
 }
-
+@property (nonatomic, retain) UIImageView *photo1View;
+@property (nonatomic, retain) UIImageView *photo2View;
 @property (nonatomic, retain) UIPickerView *picker;
 @property (nonatomic, retain) UIButton *cityBtn;
 @property (nonatomic, retain) UIButton *categoryBtn;
