@@ -1,0 +1,6 @@
+framework module Pods_BauPhi {
+  umbrella header "Pods-BauPhi-umbrella.h"
+
+  export *
+  module * { export * }
+}
