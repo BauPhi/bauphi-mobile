@@ -171,7 +171,7 @@
     [self.captureSession startRunning];
     self.videoPreviewLayer.frame = self.viewCamera.bounds;
     
-    [imageHiddenView addSubview:viewCamera];
+//    [imageHiddenView addSubview:viewCamera];
 }
 
 
@@ -201,31 +201,6 @@
 
 -(void)setImageToView:(NSData *)imageData{
     UIImage *fullBtnImage = [UIImage imageNamed:@"refresh.png"];
-    if(!img1){
-        image1 = [[UIImage alloc]initWithData: imageData];
-        UIImageWriteToSavedPhotosAlbum(image1, nil, nil, nil);
-        imageView1.image = image1;
-        [imageBtn1 setImage:fullBtnImage forState:UIControlStateNormal];
-        img1=TRUE;
-    }else if(!img2){
-        image2 = [[UIImage alloc]initWithData: imageData];
-        UIImageWriteToSavedPhotosAlbum(image2, nil, nil, nil);
-        imageView2.image = image2;
-        [imageBtn2 setImage:fullBtnImage forState:UIControlStateNormal];
-        img2=TRUE;
-    }else if(!img3){
-        image3 = [[UIImage alloc]initWithData: imageData];
-        UIImageWriteToSavedPhotosAlbum(image3, nil, nil, nil);
-        imageView3.image = image3;
-        [imageBtn3 setImage:fullBtnImage forState:UIControlStateNormal];
-        img3=TRUE;
-    }else if(!img4){
-        image4 = [[UIImage alloc]initWithData: imageData];
-        UIImageWriteToSavedPhotosAlbum(image4, nil, nil, nil);
-        imageView4.image = image4;
-        [imageBtn4 setImage:fullBtnImage forState:UIControlStateNormal];
-        img4=TRUE;
-    }
 }
 
 
@@ -265,27 +240,7 @@
     }
     UIImage *fullBtnImage = [UIImage imageNamed:@"refresh.png"];
     for(UIImage *img in images){
-        if(!img1){
-            image1 = img;
-            imageView1.image = image1;
-            [imageBtn1 setImage:fullBtnImage forState:UIControlStateNormal];
-            img1=TRUE;
-        }else if(!img2){
-            image2 = img;
-            imageView2.image = image2;
-            [imageBtn2 setImage:fullBtnImage forState:UIControlStateNormal];
-            img2=TRUE;
-        }else if(!img3){
-            image3 = img;
-            imageView3.image = image3;
-            [imageBtn3 setImage:fullBtnImage forState:UIControlStateNormal];
-            img3=TRUE;
-        }else if(!img4){
-            image4 = img;
-            imageView4.image = image4;
-            [imageBtn4 setImage:fullBtnImage forState:UIControlStateNormal];
-            img4=TRUE;
-        }
+        //TODO: images will be shown in imageview
     }
     [self dismissViewControllerAnimated:YES completion:NULL];
 }

@@ -14,6 +14,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AddEventViewController : ViewController<UIPickerViewDelegate,UIPickerViewDataSource,UIImagePickerControllerDelegate,QBImagePickerControllerDelegate>{
+    UIView *viewCamera;
     UIImageView *photo1View;
     UIImageView *photo2View;
     UIPickerView *picker;
@@ -25,9 +26,14 @@ NS_ASSUME_NONNULL_BEGIN
     UITextView *notesTextView;
     NSMutableArray *citiesArr;
     NSMutableArray *categoryArr;
+    AVCaptureVideoPreviewLayer *videoPreviewLayer;
+    AVCaptureStillImageOutput *stillImageOutput;
+    AVCaptureSession *captureSession;
+    PHImageRequestOptions *requestOptions;
     int pickerSelected;
     int subFilterBtnTag;
 }
+@property (nonatomic, retain) UIView *viewCamera;
 @property (nonatomic, retain) UIImageView *photo1View;
 @property (nonatomic, retain) UIImageView *photo2View;
 @property (nonatomic, retain) UIPickerView *picker;
@@ -39,6 +45,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, retain) UITextView *notesTextView;
 @property (nonatomic, retain) NSMutableArray *citiesArr;
 @property (nonatomic, retain) NSMutableArray *categoryArr;
+@property (nonatomic, retain) AVCaptureVideoPreviewLayer *videoPreviewLayer;
+@property (nonatomic, retain) AVCaptureStillImageOutput *stillImageOutput;
+@property (nonatomic, retain) AVCaptureSession *captureSession;
+@property (nonatomic, retain) PHImageRequestOptions *requestOptions;
 
 @end
 

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -28,6 +28,8 @@
 		8DF7B85A260DEF080077DF06 /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7B859260DEF080077DF06 /* AddEventViewController.m */; };
 		8DF7B85F260E0E4D0077DF06 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7B85E260E0E4D0077DF06 /* ProfileViewController.m */; };
 		8DF7B863260E14880077DF06 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8DF7B862260E14880077DF06 /* GoogleService-Info.plist */; };
+		8DF7B86E260FBD140077DF06 /* google.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DF7B86C260FBD130077DF06 /* google.png */; };
+		8DF7B86F260FBD140077DF06 /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DF7B86D260FBD130077DF06 /* facebook.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,8 @@
 		8DF7B85D260E0E4D0077DF06 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		8DF7B85E260E0E4D0077DF06 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		8DF7B862260E14880077DF06 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8DF7B86C260FBD130077DF06 /* google.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = google.png; sourceTree = "<group>"; };
+		8DF7B86D260FBD130077DF06 /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
 		C041F4F393865DE1C9CC69E4 /* Pods_BauPhi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BauPhi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C133C8D8684EEE39062DBCCE /* Pods-BauPhi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BauPhi.debug.xcconfig"; path = "Target Support Files/Pods-BauPhi/Pods-BauPhi.debug.xcconfig"; sourceTree = "<group>"; };
 		F80FC20468C328BA9545DB9D /* Pods-BauPhi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BauPhi.release.xcconfig"; path = "Target Support Files/Pods-BauPhi/Pods-BauPhi.release.xcconfig"; sourceTree = "<group>"; };
@@ -179,6 +183,8 @@
 		8DF7B844260BCA550077DF06 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				8DF7B86D260FBD130077DF06 /* facebook.png */,
+				8DF7B86C260FBD130077DF06 /* google.png */,
 				8DF7B846260BCA610077DF06 /* ftab1.png */,
 				8DF7B847260BCA610077DF06 /* ftab2.png */,
 				8DF7B845260BCA610077DF06 /* ftab3.png */,
@@ -268,7 +274,9 @@
 			files = (
 				8DF7B84A260BCA620077DF06 /* ftab2.png in Resources */,
 				8DF7B84D260BCBDB0077DF06 /* filter.png in Resources */,
+				8DF7B86E260FBD140077DF06 /* google.png in Resources */,
 				2FEC5E612425523B0037DB3B /* LaunchScreen.storyboard in Resources */,
+				8DF7B86F260FBD140077DF06 /* facebook.png in Resources */,
 				2FEC5E5E2425523B0037DB3B /* Assets.xcassets in Resources */,
 				8DF7B849260BCA620077DF06 /* ftab1.png in Resources */,
 				8DF7B848260BCA620077DF06 /* ftab3.png in Resources */,
