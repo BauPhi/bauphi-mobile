@@ -95,13 +95,27 @@
     [backView addSubview:signInBtn];
     
     
-    UIButton *signUpBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 6*GRID_LAYOUT_HEIGTH, 8*GRID_LAYOUT, GRID_LAYOUT_HEIGTH/2)];
+    UIButton *signUpBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 5*GRID_LAYOUT_HEIGTH, 8*GRID_LAYOUT, GRID_LAYOUT_HEIGTH/2)];
     [signUpBtn setTitle:@"Hesabınız yok mu? Kaydolun" forState:UIControlStateNormal];
     [signUpBtn setTitleColor:PLACEHOLDER_COLOR forState:UIControlStateNormal];
     [signUpBtn.titleLabel setFont:TITLE_FONT_SMALL];
     signUpBtn.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
     [signUpBtn addTarget:self action:@selector(signUpBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
     [backView addSubview:signUpBtn];
+    
+    facebookBtn = [[UIButton alloc] initWithFrame:CGRectMake(GRID_LAYOUT, 6*GRID_LAYOUT_HEIGTH, 6*GRID_LAYOUT, GRID_LAYOUT)];
+    UIImage *btnImage = [UIImage imageNamed:@"facebook.png"];
+    [facebookBtn setImage:btnImage forState:UIControlStateNormal];
+    facebookBtn.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    [facebookBtn addTarget:self action:@selector(backBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [backView addSubview:facebookBtn];
+    
+    googleBtn = [[UIButton alloc] initWithFrame:CGRectMake(GRID_LAYOUT, 6*GRID_LAYOUT_HEIGTH+GRID_LAYOUT, 6*GRID_LAYOUT, GRID_LAYOUT)];
+    UIImage *btnImage2 = [UIImage imageNamed:@"google.png"];
+    [googleBtn setImage:btnImage2 forState:UIControlStateNormal];
+    googleBtn.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    [googleBtn addTarget:self action:@selector(backBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [backView addSubview:googleBtn];
     
     [self.view addSubview:backView];
 

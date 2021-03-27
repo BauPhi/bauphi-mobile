@@ -21,6 +21,8 @@
     
     UIButton *signInBtn;
     UIButton *backBtn;
+    UIButton *facebookBtn;
+    UIButton *googleBtn;
     
     NSString *emailStr;
     NSString *passStr;
