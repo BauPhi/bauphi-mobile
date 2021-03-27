@@ -9,7 +9,8 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import "LoadingViewController.h"
-
+@import Firebase;
+@import GoogleSignIn;
 
 
 @interface AppDelegate ()
@@ -24,7 +25,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-
+    [FIRApp configure];
+    
     LoadingViewController *timeline = [[LoadingViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] init];
     

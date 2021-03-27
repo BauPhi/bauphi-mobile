@@ -7,4 +7,6 @@ target 'BauPhi' do
 
   # Pods for BauPhi
   pod "QBImagePickerController"
+  pod 'Firebase/Auth'
+  pod 'GoogleSignIn'
 end
