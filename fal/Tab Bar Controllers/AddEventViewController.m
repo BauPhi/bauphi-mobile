@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self setPageTitle:@"Anasayfa"];
+    [self setPageTitle:@"İlan Ekle"];
     [self generateTabbar];
     double grid = GRID_LAYOUT_HEIGTH/2;
     double spaceBetweenForms = GRID_LAYOUT_HEIGTH/4;
@@ -26,25 +26,61 @@
     citiesArr=[[NSMutableArray alloc] initWithObjects:@"Adana", @"Ankara" ,@"İstanbul",nil]; //dummy data
     categoryArr=[[NSMutableArray alloc] initWithObjects:@"Ev", @"Eşya Yardımı" ,@"Hayvan Bakımı",nil];
     
-    cityBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, 4*grid, SCREEN_WIDTH-20,grid)];
+    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,(3*GRID_LAYOUT_HEIGTH)/2-10, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    scrollView.scrollEnabled=YES;
+    scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, (SCREEN_HEIGHT/4)+SCREEN_HEIGHT);
+    scrollView.delegate=self;
+    scrollView.backgroundColor = WHITE_COLOR;
+    [self.view addSubview:scrollView];
+    
+    cityBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, grid, SCREEN_WIDTH-20,grid)];
     cityBtn.backgroundColor =LIGHT_BACKGROUND_COLOR;
     cityBtn.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
     [cityBtn setTitle:@"Şehir" forState:UIControlStateNormal];
-    [cityBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [cityBtn setTitleColor:PLACEHOLDER_COLOR forState:UIControlStateNormal];
     cityBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     cityBtn.tag = 0;
     [cityBtn addTarget:self action:@selector(subFilterBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:cityBtn];
+    [scrollView addSubview:cityBtn];
     
-    categoryBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, (5*grid)+spaceBetweenForms, SCREEN_WIDTH-20, grid)];
+    categoryBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, (2*grid)+spaceBetweenForms, SCREEN_WIDTH-20, grid)];
     categoryBtn.backgroundColor =LIGHT_BACKGROUND_COLOR;
     categoryBtn.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
     [categoryBtn setTitle:@"Kategori" forState:UIControlStateNormal];
-    [categoryBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [categoryBtn setTitleColor:PLACEHOLDER_COLOR forState:UIControlStateNormal];
     categoryBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     categoryBtn.tag = 1;
     [categoryBtn addTarget:self action:@selector(subFilterBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:categoryBtn];
+    [scrollView addSubview:categoryBtn];
+    
+    eventNameField = [[UITextField alloc] initWithFrame:CGRectMake(10, (3*grid)+2*spaceBetweenForms, SCREEN_WIDTH-20, grid)];
+    eventNameField.backgroundColor =LIGHT_BACKGROUND_COLOR;
+    eventNameField.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
+    eventNameField.placeholder = @"İlan İsmi";
+    [scrollView addSubview:eventNameField];
+    
+    contactNumberField = [[UITextField alloc] initWithFrame:CGRectMake(10, (4*grid)+3*spaceBetweenForms, SCREEN_WIDTH-20, grid)];
+    contactNumberField.backgroundColor =LIGHT_BACKGROUND_COLOR;
+    contactNumberField.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
+    contactNumberField.placeholder = @"İletişim Numarası";
+    contactNumberField.keyboardType = UIKeyboardTypeNumberPad;
+    [scrollView addSubview:contactNumberField];
+    
+    notesTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, (5*grid)+4*spaceBetweenForms, SCREEN_WIDTH-20, 4*grid)];
+    notesTextView.backgroundColor =LIGHT_BACKGROUND_COLOR;
+    notesTextView.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
+    [scrollView addSubview:notesTextView];
+    
+    double photoImageViewSize = ((SCREEN_WIDTH -30)/2)* .75;
+    photo1View = [[UIImageView alloc] initWithFrame:CGRectMake(10, (9*grid)+5*spaceBetweenForms, photoImageViewSize, photoImageViewSize)];
+    photo1View.backgroundColor =LIGHT_BACKGROUND_COLOR;
+    photo1View.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
+    [scrollView addSubview:photo1View];
+    
+    photo2View = [[UIImageView alloc] initWithFrame:CGRectMake(20+photoImageViewSize,(9*grid)+5*spaceBetweenForms, photoImageViewSize, photoImageViewSize)];
+    photo2View.backgroundColor =LIGHT_BACKGROUND_COLOR;
+    photo2View.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
+    [scrollView addSubview:photo2View];
     
     picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-GRID_LAYOUT*4, SCREEN_WIDTH, GRID_LAYOUT*4)];
     picker.backgroundColor = BACKGROUND_COLOR;
@@ -58,37 +94,8 @@
     [pickerBtn setTitle:@"Tamam" forState:UIControlStateNormal];
     pickerBtn.hidden = YES;
     [pickerBtn addTarget:self action:@selector(pickerBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:picker];
-    [self.view addSubview:pickerBtn];
-    
-    eventNameField = [[UITextField alloc] initWithFrame:CGRectMake(10, (7*grid), SCREEN_WIDTH-20, grid)];
-    eventNameField.backgroundColor =LIGHT_BACKGROUND_COLOR;
-    eventNameField.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
-    eventNameField.placeholder = @"İlan İsmi";
-    [self.view addSubview:eventNameField];
-    
-    contactNumberField = [[UITextField alloc] initWithFrame:CGRectMake(10, (8*grid)+spaceBetweenForms, SCREEN_WIDTH-20, grid)];
-    contactNumberField.backgroundColor =LIGHT_BACKGROUND_COLOR;
-    contactNumberField.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
-    contactNumberField.placeholder = @"İletişim Numarası";
-    contactNumberField.keyboardType = UIKeyboardTypeNumberPad;
-    [self.view addSubview:contactNumberField];
-    
-    notesTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, (10*grid), SCREEN_WIDTH-20, 4*grid)];
-    notesTextView.backgroundColor =LIGHT_BACKGROUND_COLOR;
-    notesTextView.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
-    [self.view addSubview:notesTextView];
-    
-    double photoImageViewSize = ((SCREEN_WIDTH -30)/2)* .75;
-    photo1View = [[UIImageView alloc] initWithFrame:CGRectMake(10, 14*grid+spaceBetweenForms, photoImageViewSize, photoImageViewSize)];
-    photo1View.backgroundColor =LIGHT_BACKGROUND_COLOR;
-    photo1View.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
-    [self.view addSubview:photo1View];
-    
-    photo2View = [[UIImageView alloc] initWithFrame:CGRectMake(20+photoImageViewSize, 14*grid+spaceBetweenForms, photoImageViewSize, photoImageViewSize)];
-    photo2View.backgroundColor =LIGHT_BACKGROUND_COLOR;
-    photo2View.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
-    [self.view addSubview:photo2View];
+    [scrollView addSubview:picker];
+    [scrollView addSubview:pickerBtn];
 }
 
 #pragma mark - Picker View Activity Handlers

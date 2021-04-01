@@ -13,8 +13,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AddEventViewController : ViewController<UIPickerViewDelegate,UIPickerViewDataSource,UIImagePickerControllerDelegate,QBImagePickerControllerDelegate>{
+@interface AddEventViewController : ViewController<UIPickerViewDelegate,UIPickerViewDataSource,UIImagePickerControllerDelegate,QBImagePickerControllerDelegate,UIScrollViewDelegate>{
     UIView *viewCamera;
+    UIScrollView *scrollView;
     UIImageView *photo1View;
     UIImageView *photo2View;
     UIPickerView *picker;
@@ -34,6 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
     int subFilterBtnTag;
 }
 @property (nonatomic, retain) UIView *viewCamera;
+@property (nonatomic, retain) UIScrollView *scrollView;
 @property (nonatomic, retain) UIImageView *photo1View;
 @property (nonatomic, retain) UIImageView *photo2View;
 @property (nonatomic, retain) UIPickerView *picker;
