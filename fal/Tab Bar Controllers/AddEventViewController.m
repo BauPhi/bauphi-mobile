@@ -71,16 +71,47 @@
     notesTextView.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
     [scrollView addSubview:notesTextView];
     
-    double photoImageViewSize = ((SCREEN_WIDTH -30)/2)* .75;
-    photo1View = [[UIImageView alloc] initWithFrame:CGRectMake(10, (9*grid)+5*spaceBetweenForms, photoImageViewSize, photoImageViewSize)];
-    photo1View.backgroundColor =LIGHT_BACKGROUND_COLOR;
-    photo1View.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
-    [scrollView addSubview:photo1View];
+    UIView *backViewForDatePicker = [[UIView alloc] initWithFrame:CGRectMake(10,(9*grid)+5*spaceBetweenForms, SCREEN_WIDTH-20, 3*grid+5)];
+    backViewForDatePicker.backgroundColor = BACKGROUND_COLOR;
+    [scrollView addSubview:backViewForDatePicker];
     
-    photo2View = [[UIImageView alloc] initWithFrame:CGRectMake(20+photoImageViewSize,(9*grid)+5*spaceBetweenForms, photoImageViewSize, photoImageViewSize)];
-    photo2View.backgroundColor =LIGHT_BACKGROUND_COLOR;
-    photo2View.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
-    [scrollView addSubview:photo2View];
+    UILabel *datePickerTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, grid/2)];
+    datePickerTitle.text = @"Uygunluk tarihi";
+    datePickerTitle.textColor = PLACEHOLDER_COLOR;
+    [backViewForDatePicker addSubview:datePickerTitle];
+    
+    UILabel *beginDatePickerTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, grid/2+5, SCREEN_WIDTH/3, grid)];
+    beginDatePickerTitle.text = @"Başlangıç tarihi";
+    beginDatePickerTitle.textColor = PLACEHOLDER_COLOR;
+    [backViewForDatePicker addSubview:beginDatePickerTitle];
+    
+    UILabel *endDatePickerTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 2*grid, SCREEN_WIDTH/3, grid)];
+    endDatePickerTitle.text = @"Bitiş tarihi";
+    endDatePickerTitle.textColor = PLACEHOLDER_COLOR;
+    [backViewForDatePicker addSubview:endDatePickerTitle];
+    
+    beginDatePicker =[[UIDatePicker alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/3,grid/2+5, (SCREEN_WIDTH)/3, grid)];
+    beginDatePicker.layer.cornerRadius = 10;
+    [beginDatePicker addTarget:self action:@selector(displayDay:) forControlEvents:UIControlEventValueChanged];
+    [backViewForDatePicker addSubview:beginDatePicker];
+        
+    endDatePicker =[[UIDatePicker alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/3,2*grid, (SCREEN_WIDTH)/3, grid)];
+    endDatePicker.layer.cornerRadius = 10;
+    [endDatePicker addTarget:self action:@selector(displayDay:) forControlEvents:UIControlEventValueChanged];
+    [backViewForDatePicker addSubview:endDatePicker];
+    
+//    double photoImageViewSize = ((SCREEN_WIDTH -30)/2)* .75;
+//    photo1View = [[UIImageView alloc] initWithFrame:CGRectMake(10, (12*grid)+7*spaceBetweenForms, photoImageViewSize, photoImageViewSize)];
+//    photo1View.backgroundColor =LIGHT_BACKGROUND_COLOR;
+//    photo1View.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
+//    [scrollView addSubview:photo1View];
+//    
+//    photo2View = [[UIImageView alloc] initWithFrame:CGRectMake(20+photoImageViewSize,(12*grid)+7*spaceBetweenForms, photoImageViewSize, photoImageViewSize)];
+//    photo2View.backgroundColor =LIGHT_BACKGROUND_COLOR;
+//    photo2View.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
+//    [scrollView addSubview:photo2View];
+    
+
     
     picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-GRID_LAYOUT*4, SCREEN_WIDTH, GRID_LAYOUT*4)];
     picker.backgroundColor = BACKGROUND_COLOR;
@@ -104,7 +135,6 @@
     UIButton *senderBtn = (UIButton *)sender;
     subFilterBtnTag=(int)senderBtn.tag;
     NSLog(@"subFilterBtnTapped function called with button tag: %ld", senderBtn.tag);
-    
     if(picker.isHidden == YES){
         picker.hidden = NO;
         pickerBtn.hidden = NO;
@@ -146,6 +176,12 @@
             [categoryBtn setTitle:categoryArr[pickerSelected] forState:UIControlStateNormal];
         }
     }
+}
+
+- (void)displayDay:(id)sender {
+
+    NSDate *chosen = [endDatePicker date];
+      NSLog(@"%@",chosen);
 }
 
 
