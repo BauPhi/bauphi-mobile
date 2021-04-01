@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
     UIButton *cityBtn;
     UIButton *categoryBtn;
     UIButton *pickerBtn;
+    UIButton *emergencyBtn;
     UITextField *eventNameField;
     UITextField *contactNumberField;
     UITextView *notesTextView;
@@ -46,6 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, retain) UIButton *cityBtn;
 @property (nonatomic, retain) UIButton *categoryBtn;
 @property (nonatomic, retain) UIButton *pickerBtn;
+@property (nonatomic, retain) UIButton *emergencyBtn;
 @property (nonatomic, retain) UITextField *eventNameField;
 @property (nonatomic, retain) UITextField *contactNumberField;
 @property (nonatomic, retain) UITextView *notesTextView;

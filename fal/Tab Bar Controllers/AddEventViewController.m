@@ -71,6 +71,7 @@
     notesTextView.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
     [scrollView addSubview:notesTextView];
     
+    //datePicker UI
     UIView *backViewForDatePicker = [[UIView alloc] initWithFrame:CGRectMake(10,(9*grid)+5*spaceBetweenForms, SCREEN_WIDTH-20, 3*grid+5)];
     backViewForDatePicker.backgroundColor = BACKGROUND_COLOR;
     [scrollView addSubview:backViewForDatePicker];
@@ -100,12 +101,29 @@
     [endDatePicker addTarget:self action:@selector(displayDay:) forControlEvents:UIControlEventValueChanged];
     [backViewForDatePicker addSubview:endDatePicker];
     
+    //EmergencyBtn UI
+    
+    UIView *backViewForEmergencyBtn = [[UIView alloc] initWithFrame:CGRectMake(10,(12*grid)+7*spaceBetweenForms, SCREEN_WIDTH/2+grid, grid)];
+    backViewForEmergencyBtn.backgroundColor = LIGHT_BACKGROUND_COLOR;
+    [scrollView addSubview:backViewForEmergencyBtn];
+    
+    UILabel *emergencyBtnTitle = [[UILabel alloc] initWithFrame:CGRectMake(10,0, SCREEN_WIDTH-20/2, grid)];
+    emergencyBtnTitle.text = @"Aciliyet Durumu";
+    emergencyBtnTitle.textColor = PLACEHOLDER_COLOR;
+    [backViewForEmergencyBtn addSubview:emergencyBtnTitle];
+    
+    emergencyBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2, grid/2-grid/4, grid/2,grid/2)];
+    emergencyBtn.backgroundColor =WHITE_COLOR;
+    emergencyBtn.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
+    [emergencyBtn addTarget:self action:@selector(emergencyBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [backViewForEmergencyBtn addSubview:emergencyBtn];
+    
 //    double photoImageViewSize = ((SCREEN_WIDTH -30)/2)* .75;
 //    photo1View = [[UIImageView alloc] initWithFrame:CGRectMake(10, (12*grid)+7*spaceBetweenForms, photoImageViewSize, photoImageViewSize)];
 //    photo1View.backgroundColor =LIGHT_BACKGROUND_COLOR;
 //    photo1View.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
 //    [scrollView addSubview:photo1View];
-//    
+//
 //    photo2View = [[UIImageView alloc] initWithFrame:CGRectMake(20+photoImageViewSize,(12*grid)+7*spaceBetweenForms, photoImageViewSize, photoImageViewSize)];
 //    photo2View.backgroundColor =LIGHT_BACKGROUND_COLOR;
 //    photo2View.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
@@ -178,12 +196,20 @@
     }
 }
 
+#pragma mark -Date Picker View Activity Handlers
 - (void)displayDay:(id)sender {
 
     NSDate *chosen = [endDatePicker date];
       NSLog(@"%@",chosen);
 }
 
+#pragma mark - Button Activity Handlers
+
+- (void)emergencyBtnTapped:(id)sender {
+    if(!emergencyBtn.selected){emergencyBtn.backgroundColor = [UIColor blackColor];}
+    if(emergencyBtn.selected){emergencyBtn.backgroundColor = [UIColor whiteColor];}
+    emergencyBtn.selected = !emergencyBtn.selected;
+}
 
 #pragma mark - Photo Activity Handlers
 
