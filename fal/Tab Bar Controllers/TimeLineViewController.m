@@ -20,7 +20,7 @@
     [super viewDidLoad];
     [self setPageTitle:@"Anasayfa"];
     [self generateTabbar];
-    
+    [self fetchData];
     citiesArr=[[NSMutableArray alloc] initWithObjects:@"Adana", @"Ankara" ,@"İstanbul",nil]; //dummy data
     categoryArr=[[NSMutableArray alloc] initWithObjects:@"Ev", @"Eşya Yardımı" ,@"Hayvan Bakımı",nil];
     distanceArr=[[NSMutableArray alloc] initWithObjects:@"0-5 Km", @"5-10 Km" ,@"10-15 Km",@"15-20 Km",nil];
@@ -200,6 +200,39 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 2*GRID_LAYOUT_HEIGTH;
+}
+
+-(void)fetchData {
+
+    NSDictionary *headers = @{ @"session_key": @"admin"};
+
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://bauphi-api.herokuapp.com/api/users/1/homes"]
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:10.0];
+    [request setHTTPMethod:@"GET"];
+    [request setAllHTTPHeaderFields:headers];
+
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
+                                                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                    if (error) {
+                                                        NSLog(@"%@", error);
+                                                    } else {
+                                                        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+                                                        NSLog(@"%@", httpResponse);
+                                                        NSString *responseString = [[NSString alloc] initWithData:httpResponse encoding:NSUTF8StringEncoding];
+                                                        NSError *e = nil;
+                                                        NSData *jsonData = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+                                                        NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:jsonData options: NSJSONReadingMutableContainers error: &e];
+                                                    }
+                                                }];
+    [dataTask resume];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+
+
 }
 
 @end
