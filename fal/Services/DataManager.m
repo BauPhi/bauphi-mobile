@@ -9,5 +9,19 @@
 #import "DataManager.h"
 
 @implementation DataManager
+@synthesize delegate;
+@synthesize session;
+
++ (instancetype)sharedManager
+{
+    static DataManager *_sharedClient = nil;
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        _sharedClient = [[DataManager alloc] init];
+    });
+    
+    return _sharedClient;
+}
 
 @end
