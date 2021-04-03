@@ -36,4 +36,22 @@
     return self;
 }
 
+- (void) callMethod:(ServiceType)callType withParams:(NSDictionary *)paramDic{
+    currentCallType = callType;
+    
+    NSString *path = @"";
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    
+    NSString *methodFormat = @"POST";
+    BOOL isHeaderNeeded = YES;
+
+    switch (currentCallType){
+            
+        case API_CONFIG:
+            //path = [NSString stringWithFormat:@"%@%@",SERVICE_URL, CONFIG];
+            isHeaderNeeded = NO;
+            break;
+    }
+}
+
 @end
