@@ -28,6 +28,8 @@
 		8DF7B86E260FBD140077DF06 /* google.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DF7B86C260FBD130077DF06 /* google.png */; };
 		8DF7B86F260FBD140077DF06 /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DF7B86D260FBD130077DF06 /* facebook.png */; };
 		8DF7B897261716950077DF06 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8DF7B896261716950077DF06 /* GoogleService-Info.plist */; };
+		8DF7B8BB2618B7F30077DF06 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7B8BA2618B7F30077DF06 /* DataManager.m */; };
+		8DF7B8BF2618B80D0077DF06 /* ViewPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7B8BE2618B80D0077DF06 /* ViewPresenter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,10 @@
 		8DF7B86C260FBD130077DF06 /* google.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = google.png; sourceTree = "<group>"; };
 		8DF7B86D260FBD130077DF06 /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
 		8DF7B896261716950077DF06 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8DF7B8B92618B7F30077DF06 /* DataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
+		8DF7B8BA2618B7F30077DF06 /* DataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
+		8DF7B8BD2618B80D0077DF06 /* ViewPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewPresenter.h; sourceTree = "<group>"; };
+		8DF7B8BE2618B80D0077DF06 /* ViewPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewPresenter.m; sourceTree = "<group>"; };
 		C041F4F393865DE1C9CC69E4 /* Pods_BauPhi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BauPhi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C133C8D8684EEE39062DBCCE /* Pods-BauPhi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BauPhi.debug.xcconfig"; path = "Target Support Files/Pods-BauPhi/Pods-BauPhi.debug.xcconfig"; sourceTree = "<group>"; };
 		F80FC20468C328BA9545DB9D /* Pods-BauPhi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BauPhi.release.xcconfig"; path = "Target Support Files/Pods-BauPhi/Pods-BauPhi.release.xcconfig"; sourceTree = "<group>"; };
@@ -190,6 +196,10 @@
 		8DF7B857260DEED80077DF06 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				8DF7B8B92618B7F30077DF06 /* DataManager.h */,
+				8DF7B8BA2618B7F30077DF06 /* DataManager.m */,
+				8DF7B8BD2618B80D0077DF06 /* ViewPresenter.h */,
+				8DF7B8BE2618B80D0077DF06 /* ViewPresenter.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -341,7 +351,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DF7B8BF2618B80D0077DF06 /* ViewPresenter.m in Sources */,
 				8DF7B83025F5551D0077DF06 /* TimeLineViewController.m in Sources */,
+				8DF7B8BB2618B7F30077DF06 /* DataManager.m in Sources */,
 				2FEC5E592425523A0037DB3B /* ViewController.m in Sources */,
 				8DF7B82325F5541A0077DF06 /* SignUpViewController.m in Sources */,
 				2FEC5E532425523A0037DB3B /* AppDelegate.m in Sources */,
