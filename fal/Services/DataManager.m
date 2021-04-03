@@ -12,8 +12,7 @@
 @synthesize delegate;
 @synthesize session;
 
-+ (instancetype)sharedManager
-{
++ (instancetype)sharedManager{
     static DataManager *_sharedClient = nil;
     static dispatch_once_t onceToken;
     
@@ -22,6 +21,19 @@
     });
     
     return _sharedClient;
+}
+
+- (id)init {
+    self = [super init];
+    
+    if (nil != self)
+    {
+        
+        self.session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]
+                                                     delegate:self
+                                                delegateQueue:NSOperationQueue.mainQueue];
+    }
+    return self;
 }
 
 @end
