@@ -42,8 +42,11 @@ typedef enum ServiceType : NSUInteger {
     API_PATCH_ANNOUNCEMENT
 } ServiceType;
 
+@protocol DataManagerDelegate;
+
 @interface DataManager : NSObject<NSURLSessionDelegate>{
-    
+    id<DataManagerDelegate> delegate;
+    ServiceType currentCallType;
 }
 
 @end
