@@ -42,7 +42,9 @@ typedef enum ServiceType : NSUInteger {
     API_PATCH_ANNOUNCEMENT
 } ServiceType;
 
-@interface DataManager : NSObject
+@interface DataManager : NSObject<NSURLSessionDelegate>{
+    
+}
 
 @end
 
