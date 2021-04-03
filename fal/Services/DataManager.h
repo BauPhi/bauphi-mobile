@@ -58,4 +58,12 @@ typedef enum ServiceType : NSUInteger {
 
 @end
 
+@protocol DataManagerDelegate <NSObject>
+
+@optional
+- (void) callReturn:(NSDictionary *)returnDic fromService:(ServiceType)callType;
+- (void) callFail:(NSDictionary *)returnDic fromService:(ServiceType)callType;
+
+@end
+
 NS_ASSUME_NONNULL_END
