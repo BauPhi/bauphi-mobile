@@ -23,8 +23,6 @@
 		8DF7B849260BCA620077DF06 /* ftab1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DF7B846260BCA610077DF06 /* ftab1.png */; };
 		8DF7B84A260BCA620077DF06 /* ftab2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DF7B847260BCA610077DF06 /* ftab2.png */; };
 		8DF7B84D260BCBDB0077DF06 /* filter.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DF7B84C260BCBDB0077DF06 /* filter.png */; };
-		8DF7B851260DE1380077DF06 /* LoginPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7B850260DE1380077DF06 /* LoginPresenter.m */; };
-		8DF7B855260DE1480077DF06 /* AuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7B854260DE1480077DF06 /* AuthService.m */; };
 		8DF7B85A260DEF080077DF06 /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7B859260DEF080077DF06 /* AddEventViewController.m */; };
 		8DF7B85F260E0E4D0077DF06 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7B85E260E0E4D0077DF06 /* ProfileViewController.m */; };
 		8DF7B86E260FBD140077DF06 /* google.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DF7B86C260FBD130077DF06 /* google.png */; };
@@ -59,10 +57,6 @@
 		8DF7B846260BCA610077DF06 /* ftab1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ftab1.png; sourceTree = "<group>"; };
 		8DF7B847260BCA610077DF06 /* ftab2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ftab2.png; sourceTree = "<group>"; };
 		8DF7B84C260BCBDB0077DF06 /* filter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = filter.png; sourceTree = "<group>"; };
-		8DF7B84F260DE1380077DF06 /* LoginPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginPresenter.h; sourceTree = "<group>"; };
-		8DF7B850260DE1380077DF06 /* LoginPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginPresenter.m; sourceTree = "<group>"; };
-		8DF7B853260DE1480077DF06 /* AuthService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthService.h; sourceTree = "<group>"; };
-		8DF7B854260DE1480077DF06 /* AuthService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthService.m; sourceTree = "<group>"; };
 		8DF7B858260DEF080077DF06 /* AddEventViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddEventViewController.h; sourceTree = "<group>"; };
 		8DF7B859260DEF080077DF06 /* AddEventViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddEventViewController.m; sourceTree = "<group>"; };
 		8DF7B85D260E0E4D0077DF06 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -196,10 +190,6 @@
 		8DF7B857260DEED80077DF06 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				8DF7B84F260DE1380077DF06 /* LoginPresenter.h */,
-				8DF7B850260DE1380077DF06 /* LoginPresenter.m */,
-				8DF7B853260DE1480077DF06 /* AuthService.h */,
-				8DF7B854260DE1480077DF06 /* AuthService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -353,7 +343,6 @@
 			files = (
 				8DF7B83025F5551D0077DF06 /* TimeLineViewController.m in Sources */,
 				2FEC5E592425523A0037DB3B /* ViewController.m in Sources */,
-				8DF7B851260DE1380077DF06 /* LoginPresenter.m in Sources */,
 				8DF7B82325F5541A0077DF06 /* SignUpViewController.m in Sources */,
 				2FEC5E532425523A0037DB3B /* AppDelegate.m in Sources */,
 				8DF7B85A260DEF080077DF06 /* AddEventViewController.m in Sources */,
@@ -362,7 +351,6 @@
 				8DF7B82A25F554790077DF06 /* SignInViewController.m in Sources */,
 				8DF7B85F260E0E4D0077DF06 /* ProfileViewController.m in Sources */,
 				2FEC5E562425523A0037DB3B /* SceneDelegate.m in Sources */,
-				8DF7B855260DE1480077DF06 /* AuthService.m in Sources */,
 				8DF7B83B25F556320077DF06 /* LoadingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
