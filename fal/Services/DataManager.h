@@ -47,7 +47,14 @@ typedef enum ServiceType : NSUInteger {
 @interface DataManager : NSObject<NSURLSessionDelegate>{
     id<DataManagerDelegate> delegate;
     ServiceType currentCallType;
+    NSURLSession *session;
 }
+
+@property (nonatomic, retain) id<DataManagerDelegate> delegate;
+@property (nonatomic, retain) NSURLSession *session;
+
++ (instancetype)sharedManager;
+- (void) callMethod:(ServiceType)callType withParams:(NSDictionary*)paramDic;
 
 @end
 
