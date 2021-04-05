@@ -163,6 +163,7 @@ didSignInForUser:(GIDGoogleUser *)user
 }
 
 - (void) anonBtnTapped:(id)sender{
+    [User user].userSignMethod = @"ANONYMOUS";
     TimeLineViewController *moreVc=[[TimeLineViewController alloc]init];
     [self.navigationController pushViewController:moreVc animated:YES];
 }

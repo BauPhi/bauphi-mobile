@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "User.h"
 @import FirebaseAuth;
 
 @interface SignInViewController : ViewController<UITextFieldDelegate,GIDSignInDelegate>{
