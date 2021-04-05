@@ -102,8 +102,7 @@
     [backViewForDatePicker addSubview:endDatePicker];
     
     //EmergencyBtn UI
-    
-    UIView *backViewForEmergencyBtn = [[UIView alloc] initWithFrame:CGRectMake(10,(12*grid)+7*spaceBetweenForms, SCREEN_WIDTH/2+grid, grid)];
+    UIView *backViewForEmergencyBtn = [[UIView alloc] initWithFrame:CGRectMake(10,(12*grid)+7*spaceBetweenForms, SCREEN_WIDTH/2-5, grid)];
     backViewForEmergencyBtn.backgroundColor = LIGHT_BACKGROUND_COLOR;
     [scrollView addSubview:backViewForEmergencyBtn];
     
@@ -112,11 +111,27 @@
     emergencyBtnTitle.textColor = PLACEHOLDER_COLOR;
     [backViewForEmergencyBtn addSubview:emergencyBtnTitle];
     
-    emergencyBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2, grid/2-grid/4, grid/2,grid/2)];
+    emergencyBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-grid/2-10, grid/2-grid/4, grid/2,grid/2)];
     emergencyBtn.backgroundColor =WHITE_COLOR;
     emergencyBtn.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
     [emergencyBtn addTarget:self action:@selector(emergencyBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
     [backViewForEmergencyBtn addSubview:emergencyBtn];
+    
+    //isVisibleBtn UI
+//    UIView *backViewForEmergencyBtn = [[UIView alloc] initWithFrame:CGRectMake(10,(12*grid)+7*spaceBetweenForms, SCREEN_WIDTH/2+grid, grid)];
+//    backViewForEmergencyBtn.backgroundColor = LIGHT_BACKGROUND_COLOR;
+//    [scrollView addSubview:backViewForEmergencyBtn];
+//
+//    UILabel *emergencyBtnTitle = [[UILabel alloc] initWithFrame:CGRectMake(10,0, SCREEN_WIDTH-20/2, grid)];
+//    emergencyBtnTitle.text = @"Aciliyet Durumu";
+//    emergencyBtnTitle.textColor = PLACEHOLDER_COLOR;
+//    [backViewForEmergencyBtn addSubview:emergencyBtnTitle];
+//
+//    emergencyBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2, grid/2-grid/4, grid/2,grid/2)];
+//    emergencyBtn.backgroundColor =WHITE_COLOR;
+//    emergencyBtn.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
+//    [emergencyBtn addTarget:self action:@selector(emergencyBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
+//    [backViewForEmergencyBtn addSubview:emergencyBtn];
     
 //    double photoImageViewSize = ((SCREEN_WIDTH -30)/2)* .75;
 //    photo1View = [[UIImageView alloc] initWithFrame:CGRectMake(10, (12*grid)+7*spaceBetweenForms, photoImageViewSize, photoImageViewSize)];
