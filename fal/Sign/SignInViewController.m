@@ -138,6 +138,7 @@ didSignInForUser:(GIDGoogleUser *)user
      withError:(NSError *)error {
   // ...
   if (error == nil) {
+    [User user].userSignMethod = @"GOOGLE";
     GIDAuthentication *authentication = user.authentication;
     FIRAuthCredential *credential =
     [FIRGoogleAuthProvider credentialWithIDToken:authentication.idToken
@@ -145,6 +146,7 @@ didSignInForUser:(GIDGoogleUser *)user
 
       NSLog(@"idToken %@", authentication.idToken );
       NSLog(@"credential %@", credential);
+      
   } else {
     // ...
   }
