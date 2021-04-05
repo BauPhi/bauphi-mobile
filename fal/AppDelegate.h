@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+@import GoogleSignIn;
 
-
-@interface AppDelegate : UIResponder <UIApplicationDelegate>{
+@interface AppDelegate : UIResponder <UIApplicationDelegate,GIDSignInDelegate>{
     UITabBarController *tabBarController;
 }
 

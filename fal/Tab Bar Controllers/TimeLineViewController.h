@@ -7,10 +7,11 @@
 //
 
 #import "ViewController.h"
+#import "DataManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TimeLineViewController : ViewController<UITableViewDelegate,UITableViewDataSource,UIPickerViewDelegate,UIPickerViewDataSource>{
+@interface TimeLineViewController : ViewController<UITableViewDelegate,UITableViewDataSource,UIPickerViewDelegate,UIPickerViewDataSource,DataManagerDelegate>{
     UITableView *table;
     UIView *filterView;
     UIPickerView *picker;

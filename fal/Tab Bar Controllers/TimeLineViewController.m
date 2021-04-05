@@ -18,12 +18,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setValue:@"1" forKey:@"user_id"];
+//    [DataManager sharedManager].delegate = self;
+//    [[DataManager sharedManager] callMethod:API_GET_HOME withParams:params];
+    
     [self setPageTitle:@"Anasayfa"];
     [self generateTabbar];
     [self fetchData];
     citiesArr=[[NSMutableArray alloc] initWithObjects:@"Adana", @"Ankara" ,@"İstanbul",nil]; //dummy data
     categoryArr=[[NSMutableArray alloc] initWithObjects:@"Ev", @"Eşya Yardımı" ,@"Hayvan Bakımı",nil];
     distanceArr=[[NSMutableArray alloc] initWithObjects:@"0-5 Km", @"5-10 Km" ,@"10-15 Km",@"15-20 Km",nil];
+    
     
     table = [[UITableView alloc] initWithFrame:CGRectMake(0, (2*GRID_LAYOUT_HEIGTH), SCREEN_WIDTH, SCREEN_HEIGHT-3*GRID_LAYOUT_HEIGTH)];
     table.delegate = self;
