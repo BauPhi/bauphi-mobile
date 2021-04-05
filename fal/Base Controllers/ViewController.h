@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+@import GoogleSignIn;
+@import Firebase;
 
 @interface ViewController : UIViewController{
     UIView *yellowView;

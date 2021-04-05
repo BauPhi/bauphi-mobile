@@ -7,9 +7,9 @@
 //
 
 #import "ViewController.h"
+@import FirebaseAuth;
 
-
-@interface SignInViewController : ViewController<UITextFieldDelegate>{
+@interface SignInViewController : ViewController<UITextFieldDelegate,GIDSignInDelegate>{
     UIView *emailView;
     UIView *holder;
     UIView *lightBGView;
@@ -40,5 +40,6 @@
 @property (nonatomic, retain) UIButton *backBtn;
 @property (nonatomic, retain) NSString *emailStr;
 @property (nonatomic, retain) NSString *passStr;
+@property (nonatomic, retain) UIButton *googleBtn;
 
 @end

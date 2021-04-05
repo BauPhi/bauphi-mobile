@@ -24,6 +24,8 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+
+    
     self.view.backgroundColor = BACKGROUND_COLOR;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
@@ -32,7 +34,7 @@
     yellowView.backgroundColor = COLOR_ONE;
     [self.view addSubview: yellowView];
     
-    backView = [[UIView alloc] initWithFrame:CGRectMake(GRID_LAYOUT, 2*GRID_LAYOUT_HEIGTH, 8*GRID_LAYOUT, 7*GRID_LAYOUT_HEIGTH)];
+    backView = [[UIView alloc] initWithFrame:CGRectMake(GRID_LAYOUT, 2*GRID_LAYOUT_HEIGTH, 8*GRID_LAYOUT, 10*GRID_LAYOUT_HEIGTH)];
     backView.backgroundColor = [UIColor clearColor];
     
     UILabel *welcomeLbl = [[UILabel alloc] initWithFrame:CGRectMake(GRID_LAYOUT, GRID_LAYOUT, SCREEN_WIDTH-4*GRID_LAYOUT, 2*GRID_LAYOUT)];
@@ -110,16 +112,41 @@
     [facebookBtn addTarget:self action:@selector(backBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
     [backView addSubview:facebookBtn];
     
-    googleBtn = [[UIButton alloc] initWithFrame:CGRectMake(GRID_LAYOUT, 6*GRID_LAYOUT_HEIGTH+GRID_LAYOUT, 6*GRID_LAYOUT, GRID_LAYOUT)];
+    googleBtn = [[UIButton alloc] initWithFrame:CGRectMake(GRID_LAYOUT, 6*GRID_LAYOUT_HEIGTH+GRID_LAYOUT+10, 6*GRID_LAYOUT, GRID_LAYOUT)];
     UIImage *btnImage2 = [UIImage imageNamed:@"google.png"];
+    
     [googleBtn setImage:btnImage2 forState:UIControlStateNormal];
     googleBtn.imageView.contentMode = UIViewContentModeScaleAspectFill;
-    [googleBtn addTarget:self action:@selector(backBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [googleBtn addTarget:self action:@selector(googleBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
     [backView addSubview:googleBtn];
     
     [self.view addSubview:backView];
 
 
+}
+
+- (void)signIn:(GIDSignIn *)signIn
+didSignInForUser:(GIDGoogleUser *)user
+     withError:(NSError *)error {
+  // ...
+  if (error == nil) {
+    GIDAuthentication *authentication = user.authentication;
+    FIRAuthCredential *credential =
+    [FIRGoogleAuthProvider credentialWithIDToken:authentication.idToken
+                                     accessToken:authentication.accessToken];
+
+      NSLog(@"idToken %@", authentication.idToken );
+      NSLog(@"credential %@", credential);
+  } else {
+    // ...
+  }
+}
+
+- (void) googleBtnTapped:(id)sender{
+    NSLog(@"google button tapped");
+    [GIDSignIn sharedInstance].presentingViewController = self;
+    [[GIDSignIn sharedInstance] signIn];
+    [GIDSignIn sharedInstance].delegate=self;
 }
 
 - (void) signUpBtnTapped:(id)sender{
