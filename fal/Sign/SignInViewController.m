@@ -105,20 +105,28 @@
     [signUpBtn addTarget:self action:@selector(signUpBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
     [backView addSubview:signUpBtn];
     
-    facebookBtn = [[UIButton alloc] initWithFrame:CGRectMake(GRID_LAYOUT, 6*GRID_LAYOUT_HEIGTH, 6*GRID_LAYOUT, GRID_LAYOUT)];
-    UIImage *btnImage = [UIImage imageNamed:@"facebook.png"];
-    [facebookBtn setImage:btnImage forState:UIControlStateNormal];
-    facebookBtn.imageView.contentMode = UIViewContentModeScaleAspectFill;
-    [facebookBtn addTarget:self action:@selector(backBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
-    [backView addSubview:facebookBtn];
-    
-    googleBtn = [[UIButton alloc] initWithFrame:CGRectMake(GRID_LAYOUT, 6*GRID_LAYOUT_HEIGTH+GRID_LAYOUT+10, 6*GRID_LAYOUT, GRID_LAYOUT)];
+//    facebookBtn = [[UIButton alloc] initWithFrame:CGRectMake(GRID_LAYOUT, 6*GRID_LAYOUT_HEIGTH, 6*GRID_LAYOUT, GRID_LAYOUT)];
+//    UIImage *btnImage = [UIImage imageNamed:@"facebook.png"];
+//    [facebookBtn setImage:btnImage forState:UIControlStateNormal];
+//    facebookBtn.imageView.contentMode = UIViewContentModeScaleAspectFill;
+//    [facebookBtn addTarget:self action:@selector(backBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
+//    [backView addSubview:facebookBtn];
+
+    googleBtn = [[UIButton alloc] initWithFrame:CGRectMake(GRID_LAYOUT, 6*GRID_LAYOUT_HEIGTH, 6*GRID_LAYOUT, GRID_LAYOUT)];
     UIImage *btnImage2 = [UIImage imageNamed:@"google.png"];
     
     [googleBtn setImage:btnImage2 forState:UIControlStateNormal];
     googleBtn.imageView.contentMode = UIViewContentModeScaleAspectFill;
     [googleBtn addTarget:self action:@selector(googleBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
     [backView addSubview:googleBtn];
+    
+    anonBtn = [[UIButton alloc] initWithFrame:CGRectMake(GRID_LAYOUT, 7*GRID_LAYOUT_HEIGTH, 6*GRID_LAYOUT, GRID_LAYOUT)];
+    [anonBtn setTitle:@"Kayıt Olmadan Devam Et" forState:UIControlStateNormal];
+    [anonBtn setTitleColor:PLACEHOLDER_COLOR forState:UIControlStateNormal];
+    [anonBtn.titleLabel setFont:TITLE_FONT_SMALL];
+    anonBtn.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
+    [anonBtn addTarget:self action:@selector(anonBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [backView addSubview:anonBtn];
     
     [self.view addSubview:backView];
 
@@ -150,18 +158,19 @@ didSignInForUser:(GIDGoogleUser *)user
 }
 
 - (void) signUpBtnTapped:(id)sender{
-    
     SignUpViewController *moreVc=[[SignUpViewController alloc]init];
     [self.navigationController pushViewController:moreVc animated:YES];
-    
+}
+
+- (void) anonBtnTapped:(id)sender{
+    TimeLineViewController *moreVc=[[TimeLineViewController alloc]init];
+    [self.navigationController pushViewController:moreVc animated:YES];
 }
 - (void) signInBtnTapped:(id)sender{
     emailStr = emailField.text;
     passStr = passwordField.text;
-    
     TimeLineViewController *moreVc=[[TimeLineViewController alloc]init];
     [self.navigationController pushViewController:moreVc animated:YES];
-    
 }
 
 - (void) backBtnTapped:(id)sender{

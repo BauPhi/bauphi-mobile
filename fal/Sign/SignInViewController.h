@@ -23,6 +23,7 @@
     UIButton *backBtn;
     UIButton *facebookBtn;
     UIButton *googleBtn;
+    UIButton *anonBtn;
     
     NSString *emailStr;
     NSString *passStr;
@@ -38,6 +39,7 @@
 @property (nonatomic, retain) UIView *lightBGView;
 @property (nonatomic, retain) UIView *backView;
 @property (nonatomic, retain) UIButton *backBtn;
+@property (nonatomic, retain) UIButton *anonBtn;
 @property (nonatomic, retain) NSString *emailStr;
 @property (nonatomic, retain) NSString *passStr;
 @property (nonatomic, retain) UIButton *googleBtn;
