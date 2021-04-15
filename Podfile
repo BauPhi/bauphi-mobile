@@ -11,4 +11,5 @@ target 'BauPhi' do
   pod 'GoogleSignIn'
   pod 'Firebase/Messaging'
   pod 'Firebase/Analytics'
+  pod 'AFNetworking', '~> 2.5'
 end

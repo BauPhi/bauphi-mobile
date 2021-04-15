@@ -7,8 +7,10 @@
 //
 
 #import "DataManager.h"
+#import "AFNetworking.h"
+#import "AFNetworking/AFNetworking.h"
 
-#define DOKTAR_TOKEN                    @"admin"
+#define DOKTAR_TOKEN                @"admin"
 #define GET_HOME                    @"https://bauphi-api.herokuapp.com/api/users/:user_id/homes"
 
 @implementation DataManager
@@ -43,7 +45,7 @@
     currentCallType = callType;
     
     NSString *path = @"";
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    NSDictionary *params = [[NSMutableDictionary alloc] init];
     NSString *methodFormat = @"POST";
     NSMutableDictionary *bodyParams = [[NSMutableDictionary alloc] init];
     BOOL isHeaderNeeded = YES;
@@ -52,12 +54,9 @@
             
         case API_POST_USER_SIGNUP:{
             methodFormat = @"POST";
-            path = @"https://bauphi-api.herokuapp.com/api/users";
-            [bodyParams setObject:[paramDic objectForKey:@"name"] forKey:@"name"];
-            [bodyParams setObject:[paramDic objectForKey:@"surname"] forKey:@"surname"];
-            [bodyParams setObject:[paramDic objectForKey:@"password"] forKey:@"password"];
-            [bodyParams setObject:[paramDic objectForKey:@"email"] forKey:@"email"];
-            [bodyParams setObject:[paramDic objectForKey:@"phone"] forKey:@"phone"];
+            path = [NSString stringWithFormat:@"https://bauphi-api.herokuapp.com/api/users"];
+            //NSDictionary *parameters = @{@"age": @(_age.intValue)};
+            params = @{@"name": @"oyku",@"surname": @"nehir",@"email": @"oyku@gmail.com",@"password": @"123654",@"phone": @"+905341234321"};
             break;
         }
         case API_POST_USER_SIGNIN:
@@ -150,59 +149,81 @@
             }
         }] resume];
     }else {
+  
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.responseSerializer = [AFJSONResponseSerializer serializerWithReadingOptions:NSJSONReadingAllowFragments];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [manager POST:path parameters:params success:^(NSURLSessionTask *task, id responseObject) {
+
+            // Login response validation
+            if (responseObject == [NSNull null]) {
+                
+            }else {
+                //NSError *error = nil;
+                NSLog(@"response type : %@", NSStringFromClass([responseObject class]));
+                //NSDictionary *response = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
+            }
+
+        } failure:^(NSURLSessionTask *task, NSError *error) {
+
+            NSLog(@"AFHTTPSession Failure : %@", [error localizedDescription]);
+        }];
+
         
-        NSError *error;
-        NSData *postData = [NSJSONSerialization dataWithJSONObject:params
-                                                           options:NSJSONWritingPrettyPrinted // Pass 0 if you don't care about the readability of the generated string
-                                                             error:&error];
-        [rq setHTTPMethod:@"POST"];
-        
-        [rq setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-        [rq setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        [rq setValue:@"b19d9e8cec264cb183cb2eb2a971e02b" forHTTPHeaderField:@"Ocp-Apim-Subscription-Key"];
-        [rq setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[postData length]] forHTTPHeaderField:@"Content-Length"];
-        [rq setHTTPBody:postData];
-        
-        [[session dataTaskWithRequest:rq
-                    completionHandler:^(NSData *data,
-                                        NSURLResponse *response,
-                                        NSError *error) {
-                        if (data) {
-                            if (data.length > 0 && error == nil)
-                            {
-                                
-                                id dataDic = [NSJSONSerialization JSONObjectWithData:data
-                                                                             options:0
-                                                                               error:NULL];
-                                
-                                if (dataDic) {
-                                    [self->delegate callReturn:dataDic fromService:self->currentCallType];
-                                }else{
-                                    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-                                    [dic setObject:@"error" forKey:@"error"];
-                                    [self->delegate callReturn:dic fromService:self->currentCallType];
-                                }
-                                
-                                
-                            }else{
-                                NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-                                [dic setObject:@"error" forKey:@"error"];
-                                [self->delegate callFail:dic fromService:self->currentCallType];
-                            }
-                            
-                        }else{
-                            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-                            [dic setObject:@"error" forKey:@"error"];
-                            [self->delegate callFail:dic fromService:self->currentCallType];
-                        }
-                        
-                        if (error) {
-                            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-                            [dic setObject:error forKey:@"error"];
-                            [self->delegate callFail:dic fromService:self->currentCallType];
-                        }
-                        
-                    }] resume];
+//        NSError *error;
+//        NSData *postData = [NSJSONSerialization dataWithJSONObject:params
+//                                                           options:NSJSONWritingPrettyPrinted // Pass 0 if you don't care about the readability of the generated string
+//                                                             error:&error];
+//        [rq setHTTPMethod:@"POST"];
+//
+//        [rq setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+//        [rq setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+//        [rq setValue:@"b19d9e8cec264cb183cb2eb2a971e02b" forHTTPHeaderField:@"Ocp-Apim-Subscription-Key"];
+//        [rq setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[postData length]] forHTTPHeaderField:@"Content-Length"];
+//        [rq setHTTPBody:postData];
+//
+//
+//        [[session dataTaskWithRequest:rq
+//                    completionHandler:^(NSData *data,
+//                                        NSURLResponse *response,
+//                                        NSError *error) {
+//                        if (data) {
+//                            if (data.length > 0 && error == nil)
+//                            {
+//
+//                                id dataDic = [NSJSONSerialization JSONObjectWithData:data
+//                                                                             options:0
+//                                                                               error:NULL];
+//
+//                                if (dataDic) {
+//                                    [self->delegate callReturn:dataDic fromService:self->currentCallType];
+//                                }else{
+//                                    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+//                                    [dic setObject:@"error" forKey:@"error"];
+//                                    [self->delegate callReturn:dic fromService:self->currentCallType];
+//                                }
+//
+//
+//                            }else{
+//                                NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+//                                [dic setObject:@"error" forKey:@"error"];
+//                                [self->delegate callFail:dic fromService:self->currentCallType];
+//                            }
+//
+//                        }else{
+//                            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+//                            [dic setObject:@"error" forKey:@"error"];
+//                            [self->delegate callFail:dic fromService:self->currentCallType];
+//                        }
+//
+//                        if (error) {
+//                            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+//                            [dic setObject:error forKey:@"error"];
+//                            [self->delegate callFail:dic fromService:self->currentCallType];
+//                        }
+//
+//                    }] resume];
         
     }
 }
