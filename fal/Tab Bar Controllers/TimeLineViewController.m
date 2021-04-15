@@ -19,7 +19,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    [params setValue:@"1" forKey:@"user_id"];
+    [params setObject:@"oyku" forKey:@"name"];
+    [params setObject:@"nehir" forKey:@"surname"];
+    [params setObject:@"123654" forKey:@"password"];
+    [params setObject:@"oykunehir@gmail.com" forKey:@"email"];
+    [params setObject:@"+9053412312" forKey:@"phone"];
+    [[DataManager sharedManager] callMethod:API_POST_USER_SIGNUP withParams:params];
     [self setPageTitle:@"Anasayfa"];
     [self generateTabbar];
     citiesArr=[[NSMutableArray alloc] initWithObjects:@"Adana", @"Ankara" ,@"İstanbul",nil]; //dummy data
