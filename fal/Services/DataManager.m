@@ -55,7 +55,11 @@
         case API_POST_USER_SIGNUP:{
             methodFormat = @"POST";
             path = [NSString stringWithFormat:@"https://bauphi-api.herokuapp.com/api/users"];
-            params = @{@"name":[paramDic objectForKey:@"name"],@"surname": [paramDic objectForKey:@"surname"],@"email": [paramDic objectForKey:@"email"],@"password": [paramDic objectForKey:@"password"],@"phone": [paramDic objectForKey:@"phone"]};
+            params = @{@"name":[paramDic objectForKey:@"name"],
+                       @"surname": [paramDic objectForKey:@"surname"],
+                       @"email": [paramDic objectForKey:@"email"],
+                       @"password": [paramDic objectForKey:@"password"],
+                       @"phone": [paramDic objectForKey:@"phone"]};
             break;
         }
         case API_POST_USER_SIGNIN:{
@@ -64,19 +68,46 @@
             params = @{@"email": [paramDic objectForKey:@"email"],@"password": [paramDic objectForKey:@"password"]};
             break;
         }
-        case API_PATCH_USER_UPDATE:
-        case API_PATCH_USER_DELETE:
-        case API_GET_HOME:{
-            methodFormat = @"GET";
-            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s","https://bauphi-api.herokuapp.com/api/users/",[paramDic objectForKey:@"user_id"],"/homes"];
+        case API_PATCH_USER_UPDATE:{
+            methodFormat = @"PATCH";
+            NSString *pathStr = [NSString stringWithFormat:@"%s%@","https://bauphi-api.herokuapp.com/api/users/",
+                                 [paramDic objectForKey:@"user_id"]];
+            path = pathStr;
+            params = @{@"name": [paramDic objectForKey:@"name"],
+                       @"surname": [paramDic objectForKey:@"surname"],
+                       @"password": [paramDic objectForKey:@"password"],
+                       @"email": [paramDic objectForKey:@"email"],
+                       @"phone": [paramDic objectForKey:@"phone"]};
+            break;
+        }
+            
+        case API_PATCH_USER_DELETE: {
+            methodFormat = @"DELETE";
+            NSString *pathStr = [NSString stringWithFormat:@"%s%@","https://bauphi-api.herokuapp.com/api/users/",
+                                 [paramDic objectForKey:@"user_id"]];
             path = pathStr;
             break;
         }
-        case API_GET_HOME_CLOSE:break;
+            
+        case API_GET_HOME:{
+            methodFormat = @"GET";
+            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s","https://bauphi-api.herokuapp.com/api/users/",
+                                 [paramDic objectForKey:@"user_id"],"/homes"];
+            path = pathStr;
+            break;
+        }
+            
+        case API_GET_HOME_CLOSE: {
+            
+            break;
+        }
+            
         case API_POST_HOME_ADD:{
             methodFormat = @"POST";
-            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s","https://bauphi-api.herokuapp.com/api/users/",[paramDic objectForKey:@"user_id"],"/homes"];
+            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s","https://bauphi-api.herokuapp.com/api/users/",
+                                 [paramDic objectForKey:@"user_id"],"/homes"];
             path = pathStr;
+            
             params = @{@"home_name": [paramDic objectForKey:@"home_name"],
                        @"isVisible": [paramDic objectForKey:@"isVisible"],
                        @"country": [paramDic objectForKey:@"country"],
@@ -88,12 +119,40 @@
                        @"is_pets_allowed": [paramDic objectForKey:@"is_pets_allowed"]};
             break;
         }
+            
         case API_POST_HOME_AUTOLOCATION:break;
-        case API_DELETE_HOME:break;
-        case API_PATCH_HOME_UPDATE:break;
+            
+        case API_DELETE_HOME: {
+            methodFormat = @"DELETE";
+            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s","https://bauphi-api.herokuapp.com/api/users/",
+                                 [paramDic objectForKey:@"user_id"],"/homes"];
+            path = pathStr;
+            break;
+        }
+            
+        case API_PATCH_HOME_UPDATE: {
+            methodFormat = @"PATCH";
+            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s","https://bauphi-api.herokuapp.com/api/users/",
+                                 [paramDic objectForKey:@"user_id"],"/homes"];
+            path = pathStr;
+            
+            params = @{@"home_name": [paramDic objectForKey:@"home_name"],
+                       @"isVisible": [paramDic objectForKey:@"isVisible"],
+                       @"country": [paramDic objectForKey:@"country"],
+                       @"state": [paramDic objectForKey:@"state"],
+                       @"city": [paramDic objectForKey:@"city"],
+                       @"neighbourhood": [paramDic objectForKey:@"neighbourhood"],
+                       @"latitude": [paramDic objectForKey:@"latitude"],
+                       @"longitude": [paramDic objectForKey:@"longitude"],
+                       @"is_pets_allowed": [paramDic objectForKey:@"is_pets_allowed"]};
+            
+            break;
+        }
+            
         case API_POST_OFFER_SEND:{
             methodFormat = @"POST";
-            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s","https://bauphi-api.herokuapp.com/api/users/",[paramDic objectForKey:@"user_id"],"/interactions/send-request"];
+            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s","https://bauphi-api.herokuapp.com/api/users/",
+                                 [paramDic objectForKey:@"user_id"],"/interactions/send-request"];
             path = pathStr;
             params = @{@"home": [paramDic objectForKey:@"home"],
                        @"home_owner": [paramDic objectForKey:@"home_owner"],
@@ -101,36 +160,79 @@
             break;
         }
             
-        case API_PATCH_OFFER_ACCEPT:break;
-        case API_PATCH_OFFER_REJECT:break;
-        case API_DELETE_OFFER:break;
-        case API_GET_OFFER_SENT:{
+        case API_PATCH_OFFER_ACCEPT: {
+            methodFormat = @"PATCH";
+            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s","https://bauphi-api.herokuapp.com/api/users/",
+                                 [paramDic objectForKey:@"user_id"],"/interactions/accept-request"];
+            
+            path = pathStr;
+            params = @{@"victim": [paramDic objectForKey:@"victim"],
+                       @"home": [paramDic objectForKey:@"home"]};
+            
+            break;
+            
+        }
+            
+        case API_PATCH_OFFER_REJECT: {
+            methodFormat = @"PATCH";
+            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s","https://bauphi-api.herokuapp.com/api/users/",
+                                 [paramDic objectForKey:@"user_id"],"/interactions/reject-request"];
+            
+            path = pathStr;
+            params = @{@"victim": [paramDic objectForKey:@"victim"],
+                       @"home": [paramDic objectForKey:@"home"]};
+            
+            break;
+        }
+            
+        // MARK: DELETE OFFER
+        case API_DELETE_OFFER: {
+            methodFormat = @"DELETE";
+            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s","https://bauphi-api.herokuapp.com/api/users/",
+                                 [paramDic objectForKey:@"user_id"],"/interactions/delete-request"];
+            
+            path = pathStr;
+            break;
+            
+        }
+            
+        case API_GET_OFFER_SENT: {
             methodFormat = @"GET";
-            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s","https://bauphi-api.herokuapp.com/api/users/",[paramDic objectForKey:@"user_id"],"/interactions/sent-request-list"];
+            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s","https://bauphi-api.herokuapp.com/api/users/",
+                                 [paramDic objectForKey:@"user_id"],"/interactions/sent-request-list"];
+            
             path = pathStr;
             break;
         }
+            
         case API_GET_OFFER_RECEIVED:{
             methodFormat = @"GET";
-            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s","https://bauphi-api.herokuapp.com/api/users/",[paramDic objectForKey:@"user_id"],"/interactions/received-request-list"];
+            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s","https://bauphi-api.herokuapp.com/api/users/",
+                                 [paramDic objectForKey:@"user_id"],"/interactions/received-request-list"];
             path = pathStr;
             break;
         }
-        case API_GET_ALLEVENTS_USER:{
+            
+        case API_GET_ALLEVENTS_USER: {
             methodFormat = @"GET";
-            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s","https://bauphi-api.herokuapp.com/api/users/",[paramDic objectForKey:@"user_id"],"/events"];
+            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s","https://bauphi-api.herokuapp.com/api/users/",
+                                 [paramDic objectForKey:@"user_id"],"/events"];
             path = pathStr;
             break;
         }
+            
         case API_GET_EVENT_USER:{
             methodFormat = @"GET";
-            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s%@","https://bauphi-api.herokuapp.com/api/users/",[paramDic objectForKey:@"user_id"],"/events/",[paramDic objectForKey:@"id"]];
+            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s%@","https://bauphi-api.herokuapp.com/api/users/",
+                                 [paramDic objectForKey:@"user_id"],"/events/",[paramDic objectForKey:@"id"]];
             path = pathStr;
             break;
         }
+            
         case API_POST_EVENT_ADD:{
             methodFormat = @"POST";
-            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s","https://bauphi-api.herokuapp.com/api/users/",[paramDic objectForKey:@"user_id"],"/events"];
+            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s","https://bauphi-api.herokuapp.com/api/users/",
+                                 [paramDic objectForKey:@"user_id"],"/events"];
             path = pathStr;
             params = @{@"start_time": [paramDic objectForKey:@"start_time"],
                        @"end_time": [paramDic objectForKey:@"end_time"],
@@ -147,27 +249,79 @@
                        @"currency": [paramDic objectForKey:@"currency"],
                        @"amount": [paramDic objectForKey:@"amount"]};
             break;
-            
         }
-        case API_DELETE:break;
-        case API_PATCH_EVENT_UPDATE:break;
-        case API_POST_EVENT_JOIN:break;
-        case API_DELETE_EVENT:break;
+        
+            
+        case API_DELETE: {
+            // MARK: CHECK LATER!
+        }
+            
+        case API_PATCH_EVENT_UPDATE: {
+            methodFormat = @"PATCH";
+            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s","https://bauphi-api.herokuapp.com/api/users/",
+                                 [paramDic objectForKey:@"user_id"],"/events"];
+            path = pathStr;
+            
+            params = @{@"start_time": [paramDic objectForKey:@"start_time"],
+                       @"end_time": [paramDic objectForKey:@"end_time"],
+                       @"type": [paramDic objectForKey:@"type"],
+                       @"title": [paramDic objectForKey:@"title"],
+                       @"description": [paramDic objectForKey:@"description"],
+                       @"is_emergency": [paramDic objectForKey:@"is_emergency"],
+                       @"country": [paramDic objectForKey:@"country"],
+                       @"state": [paramDic objectForKey:@"state"],
+                       @"city": [paramDic objectForKey:@"city"],
+                       @"neighbourhood": [paramDic objectForKey:@"neighbourhood"],
+                       @"latitude": [paramDic objectForKey:@"latitude"],
+                       @"longitude": [paramDic objectForKey:@"longitude"],
+                       @"currency": [paramDic objectForKey:@"currency"],
+                       @"amount": [paramDic objectForKey:@"amount"]};
+            break;
+        }
+        
+            
+        // MARK: CHECK URL!
+        case API_POST_EVENT_JOIN: {
+            methodFormat = @"POST";
+            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s","https://bauphi-api.herokuapp.com/api/users/",
+                                 [paramDic objectForKey:@"user_id"],"/events"];
+            path = pathStr;
+            params = @{@"event": [paramDic objectForKey:@"event"],
+                       @"comment": [paramDic objectForKey:@"comment"]};
+            
+            break;
+        }
+        
+        // MARK: CHECK URL!
+        case API_DELETE_EVENT: {
+            methodFormat = @"DELETE";
+            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s%@","https://bauphi-api.herokuapp.com/api/users/",
+                                 [paramDic objectForKey:@"user_id"],"/interactions/cancel-participation",[paramDic objectForKey:@"id"]];
+            
+            path = pathStr;
+            break;
+        }
+            
         case API_GET_ANNOUNCEMENT_USER:{
             methodFormat = @"GET";
-            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s","https://bauphi-api.herokuapp.com/api/users/",[paramDic objectForKey:@"user_id"],"/announcements"];
+            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s","https://bauphi-api.herokuapp.com/api/users/",
+                                 [paramDic objectForKey:@"user_id"],"/announcements"];
             path = pathStr;
             break;
         }
+            
         case API_GET_ANNOUNCEMENT:{
             methodFormat = @"GET";
-            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s%@","https://bauphi-api.herokuapp.com/api/users/",[paramDic objectForKey:@"user_id"],"/announcements",[paramDic objectForKey:@"id"]];
+            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s%@","https://bauphi-api.herokuapp.com/api/users/",
+                                 [paramDic objectForKey:@"user_id"],"/announcements",[paramDic objectForKey:@"id"]];
             path = pathStr;
             break;
         }
+            
         case API_POST_ANNOUNCEMENT_ADD:{
             methodFormat = @"POST";
-            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s","https://bauphi-api.herokuapp.com/api/users/",[paramDic objectForKey:@"user_id"],"/announcements"];
+            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s","https://bauphi-api.herokuapp.com/api/users/",
+                                 [paramDic objectForKey:@"user_id"],"/announcements"];
             path = pathStr;
             params = @{@"session_key": [paramDic objectForKey:@"session_key"],
                        @"image": [paramDic objectForKey:@"image"],
@@ -177,8 +331,32 @@
                        @"isHuman": [paramDic objectForKey:@"isHuman"]};
             break;
         }
-        case API_DELETE_ANNOUNCEMENT:break;
-        case API_PATCH_ANNOUNCEMENT:break;
+        
+        // MARK: CHECK URL!
+        case API_DELETE_ANNOUNCEMENT: {
+            methodFormat = @"DELETE";
+            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s%@","https://bauphi-api.herokuapp.com/api/users/",
+                                 [paramDic objectForKey:@"user_id"],"/announcements",[paramDic objectForKey:@"id"]];
+            path = pathStr;
+            
+            break;
+        }
+        
+        // MARK: CHECK URL!
+        case API_PATCH_ANNOUNCEMENT: {
+            methodFormat = @"PATCH";
+            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s%@","https://bauphi-api.herokuapp.com/api/users/",
+                                 [paramDic objectForKey:@"user_id"],"/announcements",[paramDic objectForKey:@"id"]];
+            path = pathStr;
+            
+            params = @{@"session_key": [paramDic objectForKey:@"session_key"],
+                       @"image": [paramDic objectForKey:@"image"],
+                       @"phone": [paramDic objectForKey:@"phone"],
+                       @"title": [paramDic objectForKey:@"title"],
+                       @"description": [paramDic objectForKey:@"description"],
+                       @"isHuman": [paramDic objectForKey:@"isHuman"]};
+            break;
+        }
 
     }
     
@@ -236,7 +414,7 @@
                 [self->delegate callFail:dic fromService:self->currentCallType];
             }
         }] resume];
-    }else {
+    }else if([methodFormat isEqualToString:@"POST"]) {
   
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         manager.responseSerializer = [AFJSONResponseSerializer serializerWithReadingOptions:NSJSONReadingAllowFragments];
@@ -261,61 +439,6 @@
 
             NSLog(@"AFHTTPSession Failure : %@", [error localizedDescription]);
         }];
-
-        
-//        NSError *error;
-//        NSData *postData = [NSJSONSerialization dataWithJSONObject:params
-//                                                           options:NSJSONWritingPrettyPrinted // Pass 0 if you don't care about the readability of the generated string
-//                                                             error:&error];
-//        [rq setHTTPMethod:@"POST"];
-//
-//        [rq setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-//        [rq setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-//        [rq setValue:@"b19d9e8cec264cb183cb2eb2a971e02b" forHTTPHeaderField:@"Ocp-Apim-Subscription-Key"];
-//        [rq setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[postData length]] forHTTPHeaderField:@"Content-Length"];
-//        [rq setHTTPBody:postData];
-//
-//
-//        [[session dataTaskWithRequest:rq
-//                    completionHandler:^(NSData *data,
-//                                        NSURLResponse *response,
-//                                        NSError *error) {
-//                        if (data) {
-//                            if (data.length > 0 && error == nil)
-//                            {
-//
-//                                id dataDic = [NSJSONSerialization JSONObjectWithData:data
-//                                                                             options:0
-//                                                                               error:NULL];
-//
-//                                if (dataDic) {
-//                                    [self->delegate callReturn:dataDic fromService:self->currentCallType];
-//                                }else{
-//                                    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-//                                    [dic setObject:@"error" forKey:@"error"];
-//                                    [self->delegate callReturn:dic fromService:self->currentCallType];
-//                                }
-//
-//
-//                            }else{
-//                                NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-//                                [dic setObject:@"error" forKey:@"error"];
-//                                [self->delegate callFail:dic fromService:self->currentCallType];
-//                            }
-//
-//                        }else{
-//                            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-//                            [dic setObject:@"error" forKey:@"error"];
-//                            [self->delegate callFail:dic fromService:self->currentCallType];
-//                        }
-//
-//                        if (error) {
-//                            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-//                            [dic setObject:error forKey:@"error"];
-//                            [self->delegate callFail:dic fromService:self->currentCallType];
-//                        }
-//
-//                    }] resume];
         
     }
 }
