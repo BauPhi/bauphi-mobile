@@ -185,11 +185,10 @@
             break;
         }
             
-        // MARK: DELETE OFFER
         case API_DELETE_OFFER: {
             methodFormat = @"DELETE";
-            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s","https://bauphi-api.herokuapp.com/api/users/",
-                                 [paramDic objectForKey:@"user_id"],"/interactions/delete-request"];
+            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s%@","https://bauphi-api.herokuapp.com/api/users/",
+                                 [paramDic objectForKey:@"user_id"],"/interactions/delete-request",[paramDic objectForKey:@"id"]];
             
             path = pathStr;
             break;
@@ -279,12 +278,10 @@
             break;
         }
         
-            
-        // MARK: CHECK URL!
         case API_POST_EVENT_JOIN: {
             methodFormat = @"POST";
             NSString *pathStr = [NSString stringWithFormat:@"%s%@%s","https://bauphi-api.herokuapp.com/api/users/",
-                                 [paramDic objectForKey:@"user_id"],"/events"];
+                                 [paramDic objectForKey:@"user_id"],"/interactions/join-event"];
             path = pathStr;
             params = @{@"event": [paramDic objectForKey:@"event"],
                        @"comment": [paramDic objectForKey:@"comment"]};
@@ -292,11 +289,10 @@
             break;
         }
         
-        // MARK: CHECK URL!
         case API_DELETE_EVENT: {
             methodFormat = @"DELETE";
             NSString *pathStr = [NSString stringWithFormat:@"%s%@%s%@","https://bauphi-api.herokuapp.com/api/users/",
-                                 [paramDic objectForKey:@"user_id"],"/interactions/cancel-participation",[paramDic objectForKey:@"id"]];
+                                 [paramDic objectForKey:@"user_id"],"/events",[paramDic objectForKey:@"id"]];
             
             path = pathStr;
             break;
@@ -331,8 +327,6 @@
                        @"isHuman": [paramDic objectForKey:@"isHuman"]};
             break;
         }
-        
-        // MARK: CHECK URL!
         case API_DELETE_ANNOUNCEMENT: {
             methodFormat = @"DELETE";
             NSString *pathStr = [NSString stringWithFormat:@"%s%@%s%@","https://bauphi-api.herokuapp.com/api/users/",
@@ -341,8 +335,6 @@
             
             break;
         }
-        
-        // MARK: CHECK URL!
         case API_PATCH_ANNOUNCEMENT: {
             methodFormat = @"PATCH";
             NSString *pathStr = [NSString stringWithFormat:@"%s%@%s%@","https://bauphi-api.herokuapp.com/api/users/",
