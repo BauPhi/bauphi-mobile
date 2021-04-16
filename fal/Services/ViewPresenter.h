@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)sharedManager;
 -(void) signInUser: (NSDictionary *)paramDic;
+-(void) signInUserWithGoogle: (NSDictionary *)paramDic;
 -(void)createUser: (NSDictionary *)paramDic;
 
 @end

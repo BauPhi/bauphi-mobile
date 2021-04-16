@@ -149,6 +149,9 @@ didSignInForUser:(GIDGoogleUser *)user
 
       NSLog(@"idToken %@", authentication.idToken );
       NSLog(@"credential %@", credential);
+      NSMutableDictionary *paramDic= [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                      authentication.accessToken, @"access_token",nil];
+      [[ViewPresenter sharedManager] signInUserWithGoogle:paramDic];
       
   } else {
     // ...

@@ -35,6 +35,9 @@
 -(void) signInUser: (NSDictionary *)paramDic{
     [[DataManager sharedManager] callMethod:API_POST_USER_SIGNIN withParams:paramDic];
 }
+-(void) signInUserWithGoogle: (NSDictionary *)paramDic{
+    [[DataManager sharedManager] callMethod:API_POST_USER_OAUTH withParams:paramDic];
+}
 -(void)createUser: (NSDictionary *)paramDic{
     [[DataManager sharedManager] callMethod:API_POST_USER_SIGNUP withParams:paramDic];
 }
@@ -57,6 +60,10 @@
             break;
         }
         case API_POST_USER_SIGNIN:{
+            [self->delegate changePage];
+            break;
+        }
+        case API_POST_USER_OAUTH:{
             [self->delegate changePage];
             break;
         }
