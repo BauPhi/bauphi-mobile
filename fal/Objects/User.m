@@ -13,6 +13,9 @@
 @synthesize userName;
 @synthesize userId;
 @synthesize userSignMethod;
+@synthesize userEmail;
+@synthesize userPhone;
+@synthesize userSurname;
 
 + (instancetype)user
 {
@@ -30,6 +33,9 @@
     userName = @"";
     userId = @"";
     userSignMethod= @"";
+    userEmail=@"";
+    userPhone=@"";
+    userSurname=@"";
     return self;
 }
 
@@ -37,6 +43,9 @@
     userName = nil;
     userId = nil;
     userSignMethod=nil;
+    userEmail=nil;
+    userPhone=nil;
+    userSurname=nil;
     [[FIRAuth auth] signOut:nil];
     
 }

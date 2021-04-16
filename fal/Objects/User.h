@@ -17,11 +17,17 @@ NS_ASSUME_NONNULL_BEGIN
     NSString *userName;
     NSString *userSignMethod;
     NSString *userId;
+    NSString *userEmail;
+    NSString *userPhone;
+    NSString *userSurname;
     
 }
 @property (nonatomic,retain) NSString *userName;
 @property (nonatomic,retain) NSString *userSignMethod;
 @property (nonatomic,retain) NSString *userId;
+@property (nonatomic,retain) NSString *userEmail;
+@property (nonatomic,retain) NSString *userPhone;
+@property (nonatomic,retain) NSString *userSurname;
 
 +(instancetype)user;
 -(void)logoutUser;

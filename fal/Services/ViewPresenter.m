@@ -7,6 +7,7 @@
 //
 
 #import "ViewPresenter.h"
+#import "User.h"
 
 @implementation ViewPresenter
 @synthesize delegate;
@@ -44,7 +45,16 @@
     switch (currentCallType){
             
         case API_POST_USER_SIGNUP:{
-            [self->delegate changePage];
+            if(![[returnDic objectForKey:@"user"] isEqual:nil]){
+                [User user].userName = [[returnDic objectForKey:@"user"] objectForKey:@"name"];
+                [User user].userId = [[returnDic objectForKey:@"user_id"] objectForKey:@"user_id"];
+                [User user].userSurname = [[returnDic objectForKey:@"surname"] objectForKey:@"surname"];
+                [User user].userEmail = [[returnDic objectForKey:@"email"] objectForKey:@"email"];
+                [User user].userPhone = [[returnDic objectForKey:@"phone"] objectForKey:@"phone"];
+                [User user].userSurname = [[returnDic objectForKey:@"surname"] objectForKey:@"surname"];
+                [self->delegate changePage];
+            }
+
             break;
         }
         case API_POST_USER_SIGNIN:{
