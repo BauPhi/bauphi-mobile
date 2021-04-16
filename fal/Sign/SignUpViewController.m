@@ -9,6 +9,7 @@
 #import "SignUpViewController.h"
 #import "Config.h"
 #import "TimeLineViewController.h"
+#import "ViewPresenter.h"
 
 @interface SignUpViewController ()
 
@@ -98,6 +99,9 @@
     
     TimeLineViewController *moreVc=[[TimeLineViewController alloc]init];
     [self.navigationController pushViewController:moreVc animated:YES];
+    
+}
+-(void)changePage{
     
 }
 

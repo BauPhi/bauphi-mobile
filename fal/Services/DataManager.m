@@ -425,11 +425,13 @@
                 //NSError *error = nil;
                 NSLog(@"response type : %@", NSStringFromClass([responseObject class]));
                 //NSDictionary *response = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
+                [self->delegate callReturn:responseObject fromService:self->currentCallType];
             }
 
         } failure:^(NSURLSessionTask *task, NSError *error) {
 
             NSLog(@"AFHTTPSession Failure : %@", [error localizedDescription]);
+            [self->delegate callFail:nil fromService:self->currentCallType];
         }];
         
     }

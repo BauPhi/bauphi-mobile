@@ -7,18 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DataManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+
 @protocol ViewPresenterDelegate;
 
-@interface ViewPresenter : NSObject{
+@interface ViewPresenter : NSObject<DataManagerDelegate>{
     id<ViewPresenterDelegate> delegate;
+    ServiceType currentCallType;
 }
 
 @property (nonatomic, retain) id<ViewPresenterDelegate> delegate;
 
 + (instancetype)sharedManager;
--(void)createUser: (NSDictionary *)paramDic :(void(^)(NSDictionary *result, NSError *error))callback;
+-(void)createUser: (NSDictionary *)paramDic;
 
 @end
 
@@ -26,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @optional
 
+-(void)changePage;
 
 @end
 

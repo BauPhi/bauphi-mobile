@@ -10,6 +10,7 @@
 #import "Config.h"
 #import "TimeLineViewController.h"
 #import "SignUpViewController.h"
+#import "ViewPresenter.h"
 
 @interface SignInViewController ()
 
@@ -24,7 +25,9 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-
+    NSDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setValue:@"name" forKey:@"name"];
+    [ViewPresenter sharedManager].delegate=self;
     
     self.view.backgroundColor = BACKGROUND_COLOR;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
@@ -172,6 +175,13 @@ didSignInForUser:(GIDGoogleUser *)user
 - (void) signInBtnTapped:(id)sender{
     emailStr = emailField.text;
     passStr = passwordField.text;
+    NSMutableDictionary *paramDic= [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                            emailStr, @"email",
+                            passStr, @"password",nil];
+    [[ViewPresenter sharedManager] createUser:paramDic];
+
+}
+-(void)changePage{
     TimeLineViewController *moreVc=[[TimeLineViewController alloc]init];
     [self.navigationController pushViewController:moreVc animated:YES];
 }
