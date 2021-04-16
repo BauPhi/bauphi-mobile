@@ -104,27 +104,31 @@
     [backView addSubview:phoneField];
     
     
-    signInBtn = [[UIButton alloc] initWithFrame:CGRectMake(2*GRID_LAYOUT, 5*GRID_LAYOUT_HEIGTH, 4*GRID_LAYOUT, GRID_LAYOUT_HEIGTH/2)];
+    signInBtn = [[UIButton alloc] initWithFrame:CGRectMake(2*GRID_LAYOUT, 6*GRID_LAYOUT_HEIGTH, 4*GRID_LAYOUT, GRID_LAYOUT_HEIGTH/2)];
     [signInBtn setTitle:@"Giriş Yap" forState:UIControlStateNormal];
     [signInBtn setTitleColor:BODY_TEXT_COLOR forState:UIControlStateNormal];
     [signInBtn.titleLabel setFont:TITLE_FONT_SMALL];
     signInBtn.backgroundColor = COLOR_ONE;
     signInBtn.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
     [signInBtn addTarget:self action:@selector(signUpBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
-//    [backView addSubview:signInBtn];
+    [backView addSubview:signInBtn];
 
     
     [self.view addSubview:backView];
 }
 
 - (void) signUpBtnTapped:(id)sender{
-    
-    TimeLineViewController *moreVc=[[TimeLineViewController alloc]init];
-    [self.navigationController pushViewController:moreVc animated:YES];
-    
+    NSMutableDictionary *paramDic= [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                            emailField.text, @"email",
+                            passwordField.text, @"password",
+                            nameField.text, @"name",
+                            surnameField.text, @"surname",
+                            phoneField.text, @"phone",nil];
+    [[ViewPresenter sharedManager] createUser:paramDic];
 }
 -(void)changePage{
-    
+    TimeLineViewController *moreVc=[[TimeLineViewController alloc]init];
+    [self.navigationController pushViewController:moreVc animated:YES];
 }
 
 - (void) backBtnTapped:(id)sender{
@@ -134,6 +138,7 @@
     [emailField resignFirstResponder];
     [passwordField resignFirstResponder];
     [nameField resignFirstResponder];
+    [phoneField resignFirstResponder];
 }
 
 

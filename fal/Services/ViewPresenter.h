@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, retain) id<ViewPresenterDelegate> delegate;
 
 + (instancetype)sharedManager;
+-(void) signInUser: (NSDictionary *)paramDic;
 -(void)createUser: (NSDictionary *)paramDic;
 
 @end

@@ -31,11 +31,11 @@
     return self;
 }
 
--(void) createUser: (NSDictionary *)paramDic{
-    NSDictionary *params = [[NSMutableDictionary alloc] init];
-    [params setValue:@"email" forKey:@"email"];
-    [params setValue:@"password" forKey:@"password"];
-    [[DataManager sharedManager] callMethod:API_POST_USER_SIGNIN withParams:params];
+-(void) signInUser: (NSDictionary *)paramDic{
+    [[DataManager sharedManager] callMethod:API_POST_USER_SIGNIN withParams:paramDic];
+}
+-(void)createUser: (NSDictionary *)paramDic{
+    [[DataManager sharedManager] callMethod:API_POST_USER_SIGNUP withParams:paramDic];
 }
 
 - (void) callReturn:(NSDictionary *)returnDic fromService:(ServiceType)callType{
