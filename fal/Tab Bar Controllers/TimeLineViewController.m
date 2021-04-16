@@ -97,6 +97,8 @@
     table.delegate = self;
     table.dataSource = self;
     [self.view addSubview:table];
+    [self.view bringSubviewToFront:picker];
+    [self.view bringSubviewToFront:pickerBtn];
 }
 
 #pragma mark - Picker View Activity Handlers
