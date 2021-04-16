@@ -9,6 +9,8 @@
 #import "TimeLineViewController.h"
 #import "Config.h"
 #import "TimeLineTableViewCell.h"
+#import "ViewPresenter.h"
+#import "User.h"
 
 @interface TimeLineViewController ()
 
@@ -21,14 +23,14 @@
     NSDictionary *params = [[NSMutableDictionary alloc] init];
     [self setPageTitle:@"Anasayfa"];
     [self generateTabbar];
+    [ViewPresenter sharedManager].delegate =self;
+    NSMutableDictionary *paramDic= [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                            [User user].userId, @"user_id",nil];
+    [[ViewPresenter sharedManager] getHomes:paramDic];
     citiesArr=[[NSMutableArray alloc] initWithObjects:@"Adana", @"Ankara" ,@"İstanbul",nil]; //dummy data
     categoryArr=[[NSMutableArray alloc] initWithObjects:@"Ev", @"Eşya Yardımı" ,@"Hayvan Bakımı",nil];
     distanceArr=[[NSMutableArray alloc] initWithObjects:@"0-5 Km", @"5-10 Km" ,@"10-15 Km",@"15-20 Km",nil];
-        
-    table = [[UITableView alloc] initWithFrame:CGRectMake(0, (2*GRID_LAYOUT_HEIGTH), SCREEN_WIDTH, SCREEN_HEIGHT-3*GRID_LAYOUT_HEIGTH)];
-    table.delegate = self;
-    table.dataSource = self;
-    [self.view addSubview:table];
+    
     
     int btnSize = GRID_LAYOUT_HEIGTH/2;
     filterBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, (3*GRID_LAYOUT_HEIGTH)/2, btnSize, btnSize)];
@@ -86,6 +88,15 @@
     [pickerBtn addTarget:self action:@selector(pickerBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:picker];
     [self.view addSubview:pickerBtn];
+}
+
+-(void)setPage: (NSArray *)paramArr{
+    NSLog(@"setPage delegate function called with parameter: %@",paramArr);
+    tableArr = paramArr;
+    table = [[UITableView alloc] initWithFrame:CGRectMake(0, (2*GRID_LAYOUT_HEIGTH), SCREEN_WIDTH, SCREEN_HEIGHT-3*GRID_LAYOUT_HEIGTH)];
+    table.delegate = self;
+    table.dataSource = self;
+    [self.view addSubview:table];
 }
 
 #pragma mark - Picker View Activity Handlers
@@ -180,7 +191,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return [tableArr count];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -195,6 +206,12 @@
     if (cell == nil){        
         cell = [[TimeLineTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
+    NSMutableDictionary *paramDic= [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                    [tableArr[indexPath.row] objectForKey:@"home_name"], @"home_name",
+                                    [tableArr[indexPath.row] objectForKey:@"city"], @"city",
+                                    [tableArr[indexPath.row] objectForKey:@"neighbourhood"], @"neighbourhood",nil];
+    [cell setData:paramDic];
+
     return cell;
 }
 
@@ -208,5 +225,7 @@
 
 
 }
+
+
 
 @end

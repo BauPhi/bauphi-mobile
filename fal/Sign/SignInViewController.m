@@ -196,6 +196,9 @@ didSignInForUser:(GIDGoogleUser *)user
     [emailField resignFirstResponder];
     [passwordField resignFirstResponder];
 }
+//-(void)setPage{
+//    
+//}
 
 /*
 #pragma mark - Navigation

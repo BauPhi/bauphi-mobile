@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void) signInUser: (NSDictionary *)paramDic;
 -(void) signInUserWithGoogle: (NSDictionary *)paramDic;
 -(void)createUser: (NSDictionary *)paramDic;
+-(void)getHomes: (NSDictionary *)paramDic;
 
 @end
 
@@ -33,6 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 
 -(void)changePage;
+-(void)setPage: (NSArray *)paramArr;
 
 @end
 

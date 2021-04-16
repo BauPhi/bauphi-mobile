@@ -38,9 +38,9 @@
         secondDescription.textColor = PLACEHOLDER_COLOR;
         
         //dummy data
-        titleLbl.text = @"Öykü,Ankara";
-        firstDescription.text = @"5 km uzakta";
-        secondDescription.text = @"23.04.2021 tarihine kadar uygun";
+//        titleLbl.text = @"Öykü,Ankara";
+//        firstDescription.text = @"5 km uzakta";
+//        secondDescription.text = @"23.04.2021 tarihine kadar uygun";
         
         [self addSubview:titleLbl];
         [self addSubview:firstDescription];
@@ -54,6 +54,11 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+-(void)setData:(NSDictionary *)paramDic{
+    titleLbl.text =[paramDic objectForKey:@"home_name"];
+    firstDescription.text =[paramDic objectForKey:@"city"];
+    secondDescription.text =[paramDic objectForKey:@"neighbourhood"];
 }
 
 @end

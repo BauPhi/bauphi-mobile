@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, retain) UILabel *firstDescription;
 @property (nonatomic, retain) UILabel *secondDescription;
 
+-(void)setData:(NSDictionary *)paramDic;
+
 @end
 
 NS_ASSUME_NONNULL_END

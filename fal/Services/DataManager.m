@@ -97,9 +97,7 @@
             
         case API_GET_HOME:{
             methodFormat = @"GET";
-            NSString *pathStr = [NSString stringWithFormat:@"%s%@%s","https://bauphi-api.herokuapp.com/api/users/",
-                                 [paramDic objectForKey:@"user_id"],"/homes"];
-            path = pathStr;
+            path = @"https://bauphi-api.herokuapp.com/api/generic/all-homes";
             break;
         }
             

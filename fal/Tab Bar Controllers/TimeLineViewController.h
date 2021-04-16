@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
     NSMutableArray *citiesArr;
     NSMutableArray *categoryArr;
     NSMutableArray *distanceArr;
+    NSMutableArray *tableArr;
     int pickerSelected;
     int subFilterBtnTag;
 }
@@ -39,6 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, retain) NSMutableArray *citiesArr;
 @property (nonatomic, retain) NSMutableArray *categoryArr;
 @property (nonatomic, retain) NSMutableArray *distanceArr;
+@property (nonatomic, retain) NSMutableArray *tableArr;
 
 @end
 

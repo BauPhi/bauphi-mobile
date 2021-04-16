@@ -53,11 +53,11 @@
         case API_POST_USER_SIGNUP:{
             if(![[returnDic objectForKey:@"user"] isEqual:nil]){
                 [User user].userName = [[returnDic objectForKey:@"user"] objectForKey:@"name"];
-                [User user].userId = [[returnDic objectForKey:@"user_id"] objectForKey:@"user_id"];
-                [User user].userSurname = [[returnDic objectForKey:@"surname"] objectForKey:@"surname"];
-                [User user].userEmail = [[returnDic objectForKey:@"email"] objectForKey:@"email"];
-                [User user].userPhone = [[returnDic objectForKey:@"phone"] objectForKey:@"phone"];
-                [User user].userSurname = [[returnDic objectForKey:@"surname"] objectForKey:@"surname"];
+                [User user].userId = [[returnDic objectForKey:@"user"] objectForKey:@"user_id"];
+                [User user].userSurname = [[returnDic objectForKey:@"user"] objectForKey:@"surname"];
+                [User user].userEmail = [[returnDic objectForKey:@"user"] objectForKey:@"email"];
+                [User user].userPhone = [[returnDic objectForKey:@"user"] objectForKey:@"phone"];
+                [User user].userSurname = [[returnDic objectForKey:@"user"] objectForKey:@"surname"];
                 [self->delegate changePage];
             }
             break;
@@ -81,7 +81,8 @@
         }
             
         case API_GET_HOME:{
-
+            NSMutableArray *dataArr = [returnDic objectForKey:@"homes"];
+            [self->delegate setPage:dataArr];
             break;
         }
             
