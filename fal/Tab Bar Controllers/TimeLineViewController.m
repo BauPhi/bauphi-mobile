@@ -19,17 +19,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSDictionary *params = [[NSMutableDictionary alloc] init];
-    params = @{@"home_name": @"home1",
-               @"isVisible": @"YES",
-               @"country":@"Turkey",
-               @"state": @"Cankaya",
-               @"city": @"Ankara",
-               @"neighbourhood": @"2093",
-               @"latitude": @"42.2548",
-               @"longitude": @"34.5897",
-               @"is_pets_allowed": @"YES",
-               @"user_id":@"1"};
-    [[DataManager sharedManager] callMethod:API_POST_HOME_ADD withParams:params];
     [self setPageTitle:@"Anasayfa"];
     [self generateTabbar];
     citiesArr=[[NSMutableArray alloc] initWithObjects:@"Adana", @"Ankara" ,@"İstanbul",nil]; //dummy data
