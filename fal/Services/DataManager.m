@@ -62,6 +62,12 @@
                        @"phone": [paramDic objectForKey:@"phone"]};
             break;
         }
+        case API_POST_USER_OAUTH:{
+            methodFormat = @"POST";
+            path = [NSString stringWithFormat:@"https://bauphi-api.herokuapp.com/api/users/google-auth"];
+            params = @{@"access_token":[paramDic objectForKey:@"access_token"]};
+            break;
+        }
         case API_POST_USER_SIGNIN:{
             methodFormat = @"POST";
             path = [NSString stringWithFormat:@"https://bauphi-api.herokuapp.com/api/users/login"];

@@ -54,7 +54,6 @@
                 [User user].userSurname = [[returnDic objectForKey:@"surname"] objectForKey:@"surname"];
                 [self->delegate changePage];
             }
-
             break;
         }
         case API_POST_USER_SIGNIN:{
