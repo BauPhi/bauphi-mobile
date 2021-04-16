@@ -17,7 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
     UIView *backView;
     UITextField *emailField;
     UITextField *passwordField;
-    UITextField *nickField;
+    UITextField *nameField;
+    UITextField *surnameField;
+    UITextField *phoneField;
     UILabel *titleLbl;
     
     UIButton *signInBtn;
@@ -35,6 +37,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, retain) UILabel *titleLbl;
 @property (nonatomic, retain) UIView *holder;
 @property (nonatomic, retain) UIView *backView;
+@property (nonatomic, retain) UITextField *nameField;
+@property (nonatomic, retain) UITextField *surnameField;
+@property (nonatomic, retain) UITextField *phoneField;
 @property (nonatomic, retain) UIView *lightBGView;
 @property (nonatomic, retain) UIButton *backBtn;
 @property (nonatomic, retain) NSString *emailStr;

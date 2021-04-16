@@ -72,14 +72,36 @@
     UIView *nickNameView = [[UIView alloc] initWithFrame:CGRectMake(GRID_LAYOUT, 2*GRID_LAYOUT_HEIGTH+2*GRID_LAYOUT+10, 6*GRID_LAYOUT, GRID_LAYOUT)];
     nickNameView.backgroundColor = WHITE_COLOR_ALPHA_LIGHT;
     nickNameView.layer.cornerRadius = 20;
-    UITextField *nickNameField = [[UITextField alloc] initWithFrame:CGRectMake(GRID_LAYOUT, 2*GRID_LAYOUT_HEIGTH+2*GRID_LAYOUT+10, 6*GRID_LAYOUT, GRID_LAYOUT)];
-    nickNameField.placeholder = @"Kullanıcı Adı";
-    nickNameField.font = BODY_FONT;
-    nickNameField.textColor = TEXT_COLOR;
-    nickNameField.secureTextEntry = true;
-    nickNameField.textAlignment = NSTextAlignmentCenter;
+    nameField = [[UITextField alloc] initWithFrame:CGRectMake(GRID_LAYOUT, 2*GRID_LAYOUT_HEIGTH+2*GRID_LAYOUT+10, 6*GRID_LAYOUT, GRID_LAYOUT)];
+    nameField.placeholder = @"Ad";
+    nameField.font = BODY_FONT;
+    nameField.textColor = TEXT_COLOR;
+    nameField.textAlignment = NSTextAlignmentCenter;
     [backView addSubview:nickNameView];
-    [backView addSubview:nickNameField];
+    [backView addSubview:nameField];
+    
+    UIView *surnameView = [[UIView alloc] initWithFrame:CGRectMake(GRID_LAYOUT, 2*GRID_LAYOUT_HEIGTH+3*GRID_LAYOUT+10, 6*GRID_LAYOUT, GRID_LAYOUT)];
+    surnameView.backgroundColor = WHITE_COLOR_ALPHA_LIGHT;
+    surnameView.layer.cornerRadius = 20;
+    surnameField = [[UITextField alloc] initWithFrame:CGRectMake(GRID_LAYOUT, 2*GRID_LAYOUT_HEIGTH+3*GRID_LAYOUT+10, 6*GRID_LAYOUT, GRID_LAYOUT)];
+    surnameField.placeholder = @"Soyad";
+    surnameField.font = BODY_FONT;
+    surnameField.textColor = TEXT_COLOR;
+    surnameField.textAlignment = NSTextAlignmentCenter;
+    [backView addSubview:surnameView];
+    [backView addSubview:surnameField];
+    
+    UIView *phoneView = [[UIView alloc] initWithFrame:CGRectMake(GRID_LAYOUT, 2*GRID_LAYOUT_HEIGTH+4*GRID_LAYOUT+10, 6*GRID_LAYOUT, GRID_LAYOUT)];
+    phoneView.backgroundColor = WHITE_COLOR_ALPHA_LIGHT;
+    phoneView.layer.cornerRadius = 20;
+    phoneField = [[UITextField alloc] initWithFrame:CGRectMake(GRID_LAYOUT, 2*GRID_LAYOUT_HEIGTH+4*GRID_LAYOUT+10, 6*GRID_LAYOUT, GRID_LAYOUT)];
+    phoneField.placeholder = @"Telefon Numarası";
+    phoneField.font = BODY_FONT;
+    phoneField.keyboardType = UIKeyboardTypeNumberPad;
+    phoneField.textColor = TEXT_COLOR;
+    phoneField.textAlignment = NSTextAlignmentCenter;
+    [backView addSubview:phoneView];
+    [backView addSubview:phoneField];
     
     
     signInBtn = [[UIButton alloc] initWithFrame:CGRectMake(2*GRID_LAYOUT, 5*GRID_LAYOUT_HEIGTH, 4*GRID_LAYOUT, GRID_LAYOUT_HEIGTH/2)];
@@ -89,7 +111,7 @@
     signInBtn.backgroundColor = COLOR_ONE;
     signInBtn.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
     [signInBtn addTarget:self action:@selector(signUpBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
-    [backView addSubview:signInBtn];
+//    [backView addSubview:signInBtn];
 
     
     [self.view addSubview:backView];
@@ -111,7 +133,7 @@
 -(void)dismissKeyboard{
     [emailField resignFirstResponder];
     [passwordField resignFirstResponder];
-    [nickField resignFirstResponder];
+    [nameField resignFirstResponder];
 }
 
 
