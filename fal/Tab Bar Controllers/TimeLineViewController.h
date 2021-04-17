@@ -8,10 +8,11 @@
 
 #import "ViewController.h"
 #import "DataManager.h"
+#import <CoreLocation/CoreLocation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TimeLineViewController : ViewController<UITableViewDelegate,UITableViewDataSource,UIPickerViewDelegate,UIPickerViewDataSource,DataManagerDelegate>{
+@interface TimeLineViewController : ViewController<UITableViewDelegate,UITableViewDataSource,UIPickerViewDelegate,UIPickerViewDataSource,DataManagerDelegate,CLLocationManagerDelegate>{
     UITableView *table;
     UIView *filterView;
     UIPickerView *picker;
@@ -25,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
     NSMutableArray *categoryArr;
     NSMutableArray *distanceArr;
     NSMutableArray *tableArr;
+    CLLocationManager *locationManager;
+    CGFloat usersLatitude;
     int pickerSelected;
     int subFilterBtnTag;
 }
@@ -41,6 +44,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, retain) NSMutableArray *categoryArr;
 @property (nonatomic, retain) NSMutableArray *distanceArr;
 @property (nonatomic, retain) NSMutableArray *tableArr;
+@property (nonatomic, retain) CLLocationManager *locationManager;
+
 
 @end
 

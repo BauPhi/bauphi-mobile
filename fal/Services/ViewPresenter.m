@@ -44,6 +44,9 @@
 -(void)getHomes: (NSDictionary *)paramDic{
     [[DataManager sharedManager] callMethod:API_GET_HOME withParams:paramDic];
 }
+-(void)getCloseHomes: (NSDictionary *)paramDic{
+    [[DataManager sharedManager] callMethod:API_GET_HOME withParams:paramDic];
+}
 
 - (void) callReturn:(NSDictionary *)returnDic fromService:(ServiceType)callType{
     NSLog(@"callReturn ServiceType: %lu and returnDic: %@",(unsigned long)callType,returnDic);

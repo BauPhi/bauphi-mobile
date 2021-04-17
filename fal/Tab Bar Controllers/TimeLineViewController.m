@@ -27,6 +27,8 @@
     NSMutableDictionary *paramDic= [NSMutableDictionary dictionaryWithObjectsAndKeys:
                             [User user].userId, @"user_id",nil];
     [[ViewPresenter sharedManager] getHomes:paramDic];
+    
+ 
     citiesArr=[[NSMutableArray alloc] initWithObjects:@"Adana", @"Ankara" ,@"İstanbul",nil]; //dummy data
     categoryArr=[[NSMutableArray alloc] initWithObjects:@"Ev", @"Eşya Yardımı" ,@"Hayvan Bakımı",nil];
     distanceArr=[[NSMutableArray alloc] initWithObjects:@"0-5 Km", @"5-10 Km" ,@"10-15 Km",@"15-20 Km",nil];
@@ -99,6 +101,22 @@
     [self.view addSubview:table];
     [self.view bringSubviewToFront:picker];
     [self.view bringSubviewToFront:pickerBtn];
+    
+    //take user's location
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+    [self.locationManager startUpdatingLocation];
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
+
+     [self.locationManager stopUpdatingLocation];
+    NSLog(@"%f,%f",self.locationManager.location.coordinate.longitude,self.locationManager.location.coordinate.latitude);
+
+     //Now you have your user's co-oridinates
 }
 
 #pragma mark - Picker View Activity Handlers
