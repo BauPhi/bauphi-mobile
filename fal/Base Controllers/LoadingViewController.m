@@ -8,6 +8,8 @@
 
 #import "LoadingViewController.h"
 #import "SignInViewController.h"
+#import "User.h"
+#import "TimeLineViewController.h"
 
 @interface LoadingViewController ()
 
@@ -18,8 +20,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    SignInViewController *moreVc=[[SignInViewController alloc]init];
-    [self.navigationController pushViewController:moreVc animated:YES];
+    NSLog(@"Userid: %@",[User user].userId);
+    if(![[User user].userId isEqual:@""]){
+        TimeLineViewController *moreVc=[[TimeLineViewController alloc]init];
+        [self.navigationController pushViewController:moreVc animated:YES];
+    }else{
+        SignInViewController *moreVc=[[SignInViewController alloc]init];
+        [self.navigationController pushViewController:moreVc animated:YES];
+    }
 }
 
 - (void)notificationHandler:(NSNotification *)notif{
