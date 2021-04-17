@@ -28,6 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)getHomes: (NSDictionary *)paramDic;
 -(void)getCloseHomes: (NSDictionary *)paramDic;
 -(void)getCloseEvents: (NSDictionary *)paramDic;
+-(void)addHome: (NSDictionary *)paramDic;
+-(void)addEvent: (NSDictionary *)paramDic;
 
 @end
 

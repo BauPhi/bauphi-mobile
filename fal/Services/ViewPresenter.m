@@ -110,7 +110,7 @@
         }
             
         case API_POST_HOME_ADD:{
-
+            [self->delegate changePage];
         }
             
         case API_POST_HOME_AUTOLOCATION:break;
@@ -164,6 +164,7 @@
         }
             
         case API_POST_EVENT_ADD:{
+            [self->delegate changePage];
             break;
         }
         

@@ -376,6 +376,11 @@
     
 }
 
+-(void)changePage{
+    TimeLineViewController *moreVc=[[TimeLineViewController alloc]init];
+    [self.navigationController pushViewController:moreVc animated:YES];
+}
+
 
 
 @end
