@@ -8,6 +8,7 @@
 
 #import "AddEventViewController.h"
 #import "Config.h"
+#import "ViewPresenter.h"
 
 @interface AddEventViewController ()
 
@@ -160,6 +161,15 @@
     [pickerBtn addTarget:self action:@selector(pickerBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:picker];
     [scrollView addSubview:pickerBtn];
+    
+    saveBtn = [[UIButton alloc] initWithFrame:CGRectMake(2*GRID_LAYOUT, (14*grid)+7*spaceBetweenForms, 4*GRID_LAYOUT, GRID_LAYOUT_HEIGTH/2)];
+    [saveBtn setTitle:@"Kaydet" forState:UIControlStateNormal];
+    [saveBtn setTitleColor:BODY_TEXT_COLOR forState:UIControlStateNormal];
+    [saveBtn.titleLabel setFont:TITLE_FONT_SMALL];
+    saveBtn.backgroundColor = COLOR_ONE;
+    saveBtn.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
+    [saveBtn addTarget:self action:@selector(signUpBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [scrollView addSubview:saveBtn];
 }
 
 #pragma mark - Picker View Activity Handlers
@@ -213,6 +223,9 @@
 
 #pragma mark -Date Picker View Activity Handlers
 - (void)displayDay:(id)sender {
+    if([sender isEqual:endDatePicker]){
+        
+    }
 
     NSDate *chosen = [endDatePicker date];
       NSLog(@"%@",chosen);
@@ -331,6 +344,36 @@
 
 - (void)qb_imagePickerControllerDidCancel:(QBImagePickerController *)imagePickerController {
     [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)signUpBtnTapped:(id)sender {
+    
+    //event
+    NSDictionary *paramsForEvent = @{@"start_time": beginDate,
+               @"end_time": endDate,
+               @"type": @"Meeting",
+               @"title": eventNameField.text,
+               @"description": notesTextView.text,
+               @"is_emergency": @(emergencyBtn.isSelected),
+               @"country": @"Turkey",
+               @"state": @"ankara",
+               @"city":@"merkez",
+               @"neighbourhood":@"2093.sok",
+               @"latitude": @"42.2548",
+               @"longitude":@"34.5897",
+               @"currency": @"TL",
+               @"amount": @"300"};
+    //home
+    NSDictionary *paramsForHome = @{@"home_name": eventNameField.text,
+               @"isVisible": @(isVisibleBtn.isSelected),
+               @"country": @"Turkey",
+               @"state": @"ankara",
+               @"city":@"merkez",
+               @"neighbourhood":@"2093.sok",
+               @"latitude": @"42.2548",
+               @"longitude":@"34.5897",
+               @"is_pets_allowed": @(emergencyBtn.isSelected)};
+    
 }
 
 

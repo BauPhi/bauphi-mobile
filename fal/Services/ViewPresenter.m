@@ -50,6 +50,12 @@
 -(void)getCloseEvents: (NSDictionary *)paramDic{
     [[DataManager sharedManager] callMethod:API_GET_EVENT_CLOSE withParams:paramDic];
 }
+-(void)addHome: (NSDictionary *)paramDic{
+    [[DataManager sharedManager] callMethod:API_POST_HOME_ADD withParams:paramDic];
+}
+-(void)addEvent: (NSDictionary *)paramDic{
+    [[DataManager sharedManager] callMethod:API_POST_EVENT_ADD withParams:paramDic];
+}
 
 - (void) callReturn:(NSDictionary *)returnDic fromService:(ServiceType)callType{
     NSLog(@"callReturn ServiceType: %lu and returnDic: %@",(unsigned long)callType,returnDic);

@@ -14,10 +14,12 @@ NS_ASSUME_NONNULL_BEGIN
     UILabel *titleLbl;
     UILabel *firstDescription;
     UILabel *secondDescription;
+    UIImageView *image;
 }
 @property (nonatomic, retain) UILabel *titleLbl;
 @property (nonatomic, retain) UILabel *firstDescription;
 @property (nonatomic, retain) UILabel *secondDescription;
+@property (nonatomic, retain) UIImageView *image;
 
 -(void)setData:(NSDictionary *)paramDic;
 

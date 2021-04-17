@@ -36,7 +36,9 @@
         secondDescription = [[UILabel alloc] initWithFrame:CGRectMake(imageSize+pading, 3*labelPading, cellWidth, labelPading)];
         secondDescription.font = BODY_FONT_SMALL;
         secondDescription.textColor = PLACEHOLDER_COLOR;
-        
+        image = [[UIImageView alloc] initWithFrame:CGRectMake(pading,3*GRID_LAYOUT_HEIGTH/4,GRID_LAYOUT_HEIGTH/2,GRID_LAYOUT_HEIGTH/2)];
+        image.image = [UIImage imageNamed:@"empty.png"];
+        [self addSubview:image];
         [self addSubview:titleLbl];
         [self addSubview:firstDescription];
         [self addSubview:secondDescription];

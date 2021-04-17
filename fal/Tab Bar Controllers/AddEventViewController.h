@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
     UIScrollView *scrollView;
     UIDatePicker *beginDatePicker;
     UIDatePicker *endDatePicker;
+    NSDate *beginDate;
+    NSDate *endDate;
     UIImageView *photo1View;
     UIImageView *photo2View;
     UIPickerView *picker;
@@ -26,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
     UIButton *pickerBtn;
     UIButton *emergencyBtn;
     UIButton *isVisibleBtn;
+    UIButton *saveBtn;
     UITextField *eventNameField;
     UITextField *contactNumberField;
     UITextView *notesTextView;
@@ -35,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
     AVCaptureStillImageOutput *stillImageOutput;
     AVCaptureSession *captureSession;
     PHImageRequestOptions *requestOptions;
+    
     int pickerSelected;
     int subFilterBtnTag;
 }
@@ -50,6 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, retain) UIButton *pickerBtn;
 @property (nonatomic, retain) UIButton *emergencyBtn;
 @property (nonatomic, retain) UIButton *isVisibleBtn;
+@property (nonatomic, retain) UIButton *saveBtn;
 @property (nonatomic, retain) UITextField *eventNameField;
 @property (nonatomic, retain) UITextField *contactNumberField;
 @property (nonatomic, retain) UITextView *notesTextView;
