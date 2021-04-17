@@ -30,7 +30,7 @@
     
  
     citiesArr=[[NSMutableArray alloc] initWithObjects:@"Adana", @"Ankara" ,@"İstanbul",nil]; //dummy data
-    categoryArr=[[NSMutableArray alloc] initWithObjects:@"Ev", @"Eşya Yardımı" ,@"Hayvan Bakımı",nil];
+    categoryArr=[[NSMutableArray alloc] initWithObjects:@"Ev", @"Etkinlik",nil];
     distanceArr=[[NSMutableArray alloc] initWithObjects:@"0-5 Km", @"5-10 Km" ,@"10-15 Km",@"15-20 Km",nil];
     
     
@@ -135,14 +135,10 @@
             NSDictionary *paramDic= @{@"latitude": @"30.2548",
                                              @"longitude":@"20.5897"};
             [[ViewPresenter sharedManager] getCloseHomes:paramDic];
-        }else if([cityBtn.titleLabel isEqual:@"Eşya Yardımı"]){
+        }else if([cityBtn.titleLabel isEqual:@"Etkinlik"]){
             NSDictionary *paramDic= @{@"latitude": @"30.2548",
                                              @"longitude":@"20.5897"};
-            [[ViewPresenter sharedManager] getCloseHomes:paramDic];
-        }else if([cityBtn.titleLabel isEqual:@"Hayvan Bakımı"]){
-            NSDictionary *paramDic= @{@"latitude": @"30.2548",
-                                             @"longitude":@"20.5897"};
-            [[ViewPresenter sharedManager] getCloseHomes:paramDic];
+            [[ViewPresenter sharedManager] getCloseEvents:paramDic];
         }else{
             NSDictionary *paramDic= @{@"latitude": @"30.2548",
                                              @"longitude":@"20.5897"};

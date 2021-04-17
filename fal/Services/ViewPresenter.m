@@ -47,6 +47,9 @@
 -(void)getCloseHomes: (NSDictionary *)paramDic{
     [[DataManager sharedManager] callMethod:API_GET_HOME_CLOSE withParams:paramDic];
 }
+-(void)getCloseEvents: (NSDictionary *)paramDic{
+    [[DataManager sharedManager] callMethod:API_GET_EVENT_CLOSE withParams:paramDic];
+}
 
 - (void) callReturn:(NSDictionary *)returnDic fromService:(ServiceType)callType{
     NSLog(@"callReturn ServiceType: %lu and returnDic: %@",(unsigned long)callType,returnDic);
@@ -90,6 +93,11 @@
         }
             
         case API_GET_HOME_CLOSE: {
+            NSMutableArray *dataArr = [returnDic objectForKey:@"homes"];
+            [self->delegate reloadTable:dataArr];
+            break;
+        }
+        case API_GET_EVENT_CLOSE: {
             NSMutableArray *dataArr = [returnDic objectForKey:@"homes"];
             [self->delegate reloadTable:dataArr];
             break;

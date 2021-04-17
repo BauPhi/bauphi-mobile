@@ -192,6 +192,14 @@
             
             break;
         }
+        case API_GET_EVENT_CLOSE: {
+            methodFormat = @"POST";
+            path = @"https://bauphi-api.herokuapp.com/api/generic/get-close-homes";
+            
+            params = @{@"latitude": [paramDic objectForKey:@"latitude"],
+                       @"longitude": [paramDic objectForKey:@"longitude"]};
+            break;
+        }
             
         case API_DELETE_OFFER: {
             methodFormat = @"DELETE";
