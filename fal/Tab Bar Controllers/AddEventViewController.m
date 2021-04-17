@@ -9,6 +9,7 @@
 #import "AddEventViewController.h"
 #import "Config.h"
 #import "ViewPresenter.h"
+#import "TimeLineViewController.h"
 
 @interface AddEventViewController ()
 
@@ -25,7 +26,7 @@
     double spaceBetweenForms = GRID_LAYOUT_HEIGTH/4;
     
     citiesArr=[[NSMutableArray alloc] initWithObjects:@"Adana", @"Ankara" ,@"İstanbul",nil]; //dummy data
-    categoryArr=[[NSMutableArray alloc] initWithObjects:@"Ev", @"Eşya Yardımı" ,@"Hayvan Bakımı",nil];
+    categoryArr=[[NSMutableArray alloc] initWithObjects:@"Ev", @"Etkinlik",nil];
     
     scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,(3*GRID_LAYOUT_HEIGTH)/2-10, SCREEN_WIDTH, SCREEN_HEIGHT)];
     scrollView.scrollEnabled=YES;
@@ -348,31 +349,36 @@
 
 - (void)signUpBtnTapped:(id)sender {
     
-    //event
-    NSDictionary *paramsForEvent = @{@"start_time": beginDate,
-               @"end_time": endDate,
-               @"type": @"Meeting",
-               @"title": eventNameField.text,
-               @"description": notesTextView.text,
-               @"is_emergency": @(emergencyBtn.isSelected),
-               @"country": @"Turkey",
-               @"state": @"ankara",
-               @"city":@"merkez",
-               @"neighbourhood":@"2093.sok",
-               @"latitude": @"42.2548",
-               @"longitude":@"34.5897",
-               @"currency": @"TL",
-               @"amount": @"300"};
-    //home
-    NSDictionary *paramsForHome = @{@"home_name": eventNameField.text,
-               @"isVisible": @(isVisibleBtn.isSelected),
-               @"country": @"Turkey",
-               @"state": @"ankara",
-               @"city":@"merkez",
-               @"neighbourhood":@"2093.sok",
-               @"latitude": @"42.2548",
-               @"longitude":@"34.5897",
-               @"is_pets_allowed": @(emergencyBtn.isSelected)};
+    if([categoryBtn.titleLabel.text isEqual:@"Ev"]){
+        //home
+        NSDictionary *paramsForHome = @{@"home_name": eventNameField.text,
+                   @"isVisible": @(isVisibleBtn.isSelected),
+                   @"country": @"Turkey",
+                   @"state": @"ankara",
+                   @"city":@"merkez",
+                   @"neighbourhood":@"2093.sok",
+                   @"latitude": @"42.2548",
+                   @"longitude":@"34.5897",
+                   @"is_pets_allowed": @(emergencyBtn.isSelected)};
+        [[ViewPresenter sharedManager] addHome:paramsForHome];
+    }else{
+        //event
+        NSDictionary *paramsForEvent = @{@"start_time": beginDate,
+                   @"end_time": endDate,
+                   @"type": @"Meeting",
+                   @"title": eventNameField.text,
+                   @"description": notesTextView.text,
+                   @"is_emergency": @(emergencyBtn.isSelected),
+                   @"country": @"Turkey",
+                   @"state": @"ankara",
+                   @"city":@"merkez",
+                   @"neighbourhood":@"2093.sok",
+                   @"latitude": @"42.2548",
+                   @"longitude":@"34.5897",
+                   @"currency": @"TL",
+                   @"amount": @"300"};
+        [[ViewPresenter sharedManager] addEvent:paramsForEvent];
+    }
     
 }
 
