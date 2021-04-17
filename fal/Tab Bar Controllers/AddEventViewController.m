@@ -169,7 +169,7 @@
     [saveBtn.titleLabel setFont:TITLE_FONT_SMALL];
     saveBtn.backgroundColor = COLOR_ONE;
     saveBtn.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
-    [saveBtn addTarget:self action:@selector(signUpBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [saveBtn addTarget:self action:@selector(saveBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:saveBtn];
 }
 
@@ -347,7 +347,7 @@
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
-- (void)signUpBtnTapped:(id)sender {
+- (void)saveBtnTapped:(id)sender {
     
     if([categoryBtn.titleLabel.text isEqual:@"Ev"]){
         //home
