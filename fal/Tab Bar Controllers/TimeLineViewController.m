@@ -54,9 +54,9 @@
     cityBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     cityBtn.tag = 0;
     [cityBtn addTarget:self action:@selector(subFilterBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
-    [filterView addSubview:cityBtn];
+    //[filterView addSubview:cityBtn];
     
-    categoryBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, (3*GRID_LAYOUT_HEIGTH)/2+10, SCREEN_WIDTH-20, GRID_LAYOUT_HEIGTH/2)];
+    categoryBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, GRID_LAYOUT_HEIGTH, SCREEN_WIDTH-20, GRID_LAYOUT_HEIGTH/2)];
     categoryBtn.backgroundColor =WHITE_COLOR;
     categoryBtn.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
     [categoryBtn setTitle:@"Kategori" forState:UIControlStateNormal];
@@ -66,10 +66,10 @@
     [categoryBtn addTarget:self action:@selector(subFilterBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
     [filterView addSubview:categoryBtn];
     
-    distanceBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, 2*GRID_LAYOUT_HEIGTH+20, SCREEN_WIDTH-20, GRID_LAYOUT_HEIGTH/2)];
+    distanceBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, (3*GRID_LAYOUT_HEIGTH)/2+10, SCREEN_WIDTH-20, GRID_LAYOUT_HEIGTH/2)];
     distanceBtn.backgroundColor =WHITE_COLOR;
     distanceBtn.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
-    [distanceBtn setTitle:@"Uzaklık" forState:UIControlStateNormal];
+    [distanceBtn setTitle:@"Yakınlığa Göre Sırala" forState:UIControlStateNormal];
     [distanceBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     distanceBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     distanceBtn.tag = 2;
@@ -126,10 +126,29 @@
     subFilterBtnTag=(int)senderBtn.tag;
     NSLog(@"subFilterBtnTapped function called with button tag: %ld", senderBtn.tag);
     
-    if(picker.isHidden == YES){
+    if(picker.isHidden == YES && subFilterBtnTag== 1){
         picker.hidden = NO;
         pickerBtn.hidden = NO;
         [picker reloadAllComponents];
+    }if(subFilterBtnTag == 2){
+        if([cityBtn.titleLabel isEqual:@"Ev"]){
+            NSDictionary *paramDic= @{@"latitude": @"30.2548",
+                                             @"longitude":@"20.5897"};
+            [[ViewPresenter sharedManager] getCloseHomes:paramDic];
+        }else if([cityBtn.titleLabel isEqual:@"Eşya Yardımı"]){
+            NSDictionary *paramDic= @{@"latitude": @"30.2548",
+                                             @"longitude":@"20.5897"};
+            [[ViewPresenter sharedManager] getCloseHomes:paramDic];
+        }else if([cityBtn.titleLabel isEqual:@"Hayvan Bakımı"]){
+            NSDictionary *paramDic= @{@"latitude": @"30.2548",
+                                             @"longitude":@"20.5897"};
+            [[ViewPresenter sharedManager] getCloseHomes:paramDic];
+        }else{
+            NSDictionary *paramDic= @{@"latitude": @"30.2548",
+                                             @"longitude":@"20.5897"};
+            [[ViewPresenter sharedManager] getCloseHomes:paramDic];
+        }
+        
     }
 }
 
@@ -244,6 +263,11 @@
 {
 
 
+}
+
+-(void)reloadTable:(NSArray *)paramArr{
+    tableArr = (NSMutableArray *)paramArr;
+    [table reloadData];
 }
 
 

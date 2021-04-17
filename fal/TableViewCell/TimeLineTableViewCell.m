@@ -37,11 +37,6 @@
         secondDescription.font = BODY_FONT_SMALL;
         secondDescription.textColor = PLACEHOLDER_COLOR;
         
-        //dummy data
-//        titleLbl.text = @"Öykü,Ankara";
-//        firstDescription.text = @"5 km uzakta";
-//        secondDescription.text = @"23.04.2021 tarihine kadar uygun";
-        
         [self addSubview:titleLbl];
         [self addSubview:firstDescription];
         [self addSubview:secondDescription];
