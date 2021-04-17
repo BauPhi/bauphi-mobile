@@ -181,7 +181,7 @@ didSignInForUser:(GIDGoogleUser *)user
     NSMutableDictionary *paramDic= [NSMutableDictionary dictionaryWithObjectsAndKeys:
                             emailStr, @"email",
                             passStr, @"password",nil];
-    [[ViewPresenter sharedManager] createUser:paramDic];
+    [[ViewPresenter sharedManager] signInUser:paramDic];
 
 }
 -(void)changePage{

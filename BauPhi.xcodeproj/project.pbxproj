@@ -15,6 +15,10 @@
 		2FEC5E642425523B0037DB3B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC5E632425523B0037DB3B /* main.m */; };
 		5B8CEF214F46BC2183B8B231 /* Pods_BauPhi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C041F4F393865DE1C9CC69E4 /* Pods_BauPhi.framework */; };
 		8DB2B2B5262B1E0700A7858C /* empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DB2B2B4262B1E0600A7858C /* empty.png */; };
+		8DB2B2B8262B4E7D00A7858C /* donation.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DB2B2B7262B4E7D00A7858C /* donation.png */; };
+		8DB2B2C1262C3EEE00A7858C /* ConfigureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DB2B2C0262C3EEE00A7858C /* ConfigureViewController.m */; };
+		8DB2B2C4262C4A3200A7858C /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DB2B2C3262C4A3200A7858C /* settings.png */; };
+		8DB2B2C8262C4C5600A7858C /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DB2B2C7262C4C5600A7858C /* SettingsViewController.m */; };
 		8DF7B82325F5541A0077DF06 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7B82225F5541A0077DF06 /* SignUpViewController.m */; };
 		8DF7B82A25F554790077DF06 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7B82925F554790077DF06 /* SignInViewController.m */; };
 		8DF7B83025F5551D0077DF06 /* TimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7B82F25F5551D0077DF06 /* TimeLineViewController.m */; };
@@ -47,6 +51,12 @@
 		2FEC5E622425523B0037DB3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2FEC5E632425523B0037DB3B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8DB2B2B4262B1E0600A7858C /* empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = empty.png; sourceTree = "<group>"; };
+		8DB2B2B7262B4E7D00A7858C /* donation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = donation.png; sourceTree = "<group>"; };
+		8DB2B2BF262C3EEE00A7858C /* ConfigureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfigureViewController.h; sourceTree = "<group>"; };
+		8DB2B2C0262C3EEE00A7858C /* ConfigureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfigureViewController.m; sourceTree = "<group>"; };
+		8DB2B2C3262C4A3200A7858C /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
+		8DB2B2C6262C4C5600A7858C /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		8DB2B2C7262C4C5600A7858C /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		8DF7B82025F553BE0077DF06 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		8DF7B82125F5541A0077DF06 /* SignUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		8DF7B82225F5541A0077DF06 /* SignUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
@@ -162,6 +172,10 @@
 				8DF7B859260DEF080077DF06 /* AddEventViewController.m */,
 				8DF7B85D260E0E4D0077DF06 /* ProfileViewController.h */,
 				8DF7B85E260E0E4D0077DF06 /* ProfileViewController.m */,
+				8DB2B2BF262C3EEE00A7858C /* ConfigureViewController.h */,
+				8DB2B2C0262C3EEE00A7858C /* ConfigureViewController.m */,
+				8DB2B2C6262C4C5600A7858C /* SettingsViewController.h */,
+				8DB2B2C7262C4C5600A7858C /* SettingsViewController.m */,
 			);
 			path = "Tab Bar Controllers";
 			sourceTree = "<group>";
@@ -189,6 +203,8 @@
 		8DF7B844260BCA550077DF06 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				8DB2B2C3262C4A3200A7858C /* settings.png */,
+				8DB2B2B7262B4E7D00A7858C /* donation.png */,
 				8DB2B2B4262B1E0600A7858C /* empty.png */,
 				8DF7B86D260FBD130077DF06 /* facebook.png */,
 				8DF7B86C260FBD130077DF06 /* google.png */,
@@ -289,12 +305,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DB2B2C4262C4A3200A7858C /* settings.png in Resources */,
 				8DF7B84A260BCA620077DF06 /* ftab2.png in Resources */,
 				8DF7B84D260BCBDB0077DF06 /* filter.png in Resources */,
 				8DF7B897261716950077DF06 /* GoogleService-Info.plist in Resources */,
 				8DF7B86E260FBD140077DF06 /* google.png in Resources */,
 				2FEC5E612425523B0037DB3B /* LaunchScreen.storyboard in Resources */,
 				8DF7B86F260FBD140077DF06 /* facebook.png in Resources */,
+				8DB2B2B8262B4E7D00A7858C /* donation.png in Resources */,
 				2FEC5E5E2425523B0037DB3B /* Assets.xcassets in Resources */,
 				8DB2B2B5262B1E0700A7858C /* empty.png in Resources */,
 				8DF7B849260BCA620077DF06 /* ftab1.png in Resources */,
@@ -370,6 +388,8 @@
 			files = (
 				8DF7B8BF2618B80D0077DF06 /* ViewPresenter.m in Sources */,
 				8DF7B83025F5551D0077DF06 /* TimeLineViewController.m in Sources */,
+				8DB2B2C1262C3EEE00A7858C /* ConfigureViewController.m in Sources */,
+				8DB2B2C8262C4C5600A7858C /* SettingsViewController.m in Sources */,
 				8DF7B8BB2618B7F30077DF06 /* DataManager.m in Sources */,
 				2FEC5E592425523A0037DB3B /* ViewController.m in Sources */,
 				8DF7B82325F5541A0077DF06 /* SignUpViewController.m in Sources */,

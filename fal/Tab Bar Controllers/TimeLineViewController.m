@@ -30,7 +30,7 @@
     
  
     citiesArr=[[NSMutableArray alloc] initWithObjects:@"Adana", @"Ankara" ,@"İstanbul",nil]; //dummy data
-    categoryArr=[[NSMutableArray alloc] initWithObjects:@"Ev", @"Etkinlik",nil];
+    categoryArr=[[NSMutableArray alloc] initWithObjects:@"Ev", @"Etkinlik",@"Kayıp Hayvan İlanları",nil];
     distanceArr=[[NSMutableArray alloc] initWithObjects:@"0-5 Km", @"5-10 Km" ,@"10-15 Km",@"15-20 Km",nil];
     
     

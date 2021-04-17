@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)getCloseEvents: (NSDictionary *)paramDic;
 -(void)addHome: (NSDictionary *)paramDic;
 -(void)addEvent: (NSDictionary *)paramDic;
+-(void)getUsersHome: (NSDictionary *)paramDic;
 
 @end
 

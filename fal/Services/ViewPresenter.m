@@ -56,6 +56,9 @@
 -(void)addEvent: (NSDictionary *)paramDic{
     [[DataManager sharedManager] callMethod:API_POST_EVENT_ADD withParams:paramDic];
 }
+-(void)getUsersHome: (NSDictionary *)paramDic{
+    [[DataManager sharedManager] callMethod:API_GET_USER_HOME withParams:paramDic];
+}
 
 - (void) callReturn:(NSDictionary *)returnDic fromService:(ServiceType)callType{
     NSLog(@"callReturn ServiceType: %lu and returnDic: %@",(unsigned long)callType,returnDic);
@@ -75,7 +78,15 @@
             break;
         }
         case API_POST_USER_SIGNIN:{
-            [self->delegate changePage];
+            if(![[returnDic objectForKey:@"user"] isEqual:nil]){
+                [User user].userName = [[returnDic objectForKey:@"user"] objectForKey:@"name"];
+                [User user].userId = [[returnDic objectForKey:@"user"] objectForKey:@"user_id"];
+                [User user].userSurname = [[returnDic objectForKey:@"user"] objectForKey:@"surname"];
+                [User user].userEmail = [[returnDic objectForKey:@"user"] objectForKey:@"email"];
+                [User user].userPhone = [[returnDic objectForKey:@"user"] objectForKey:@"phone"];
+                [User user].userSurname = [[returnDic objectForKey:@"user"] objectForKey:@"surname"];
+                [self->delegate changePage];
+            }
             break;
         }
         case API_POST_USER_OAUTH:{
@@ -91,12 +102,17 @@
 
             break;
         }
-            
+        case API_GET_USER_HOME:{
+            NSMutableArray *dataArr = [returnDic objectForKey:@"homes"];
+            [self->delegate setPage:dataArr];
+            break;
+        }
         case API_GET_HOME:{
             NSMutableArray *dataArr = [returnDic objectForKey:@"homes"];
             [self->delegate setPage:dataArr];
             break;
         }
+        
             
         case API_GET_HOME_CLOSE: {
             NSMutableArray *dataArr = [returnDic objectForKey:@"homes"];

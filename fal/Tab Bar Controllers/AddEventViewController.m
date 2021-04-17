@@ -20,107 +20,105 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    addHomeView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    addEventView =[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    addHomeView.hidden = YES;
+    addEventView.hidden = YES;
+    [self.view addSubview:addHomeView];
+    [self.view addSubview:addEventView];
+    
     [self setPageTitle:@"İlan Ekle"];
     [self generateTabbar];
-    double grid = GRID_LAYOUT_HEIGTH/2;
-    double spaceBetweenForms = GRID_LAYOUT_HEIGTH/4;
     
     citiesArr=[[NSMutableArray alloc] initWithObjects:@"Adana", @"Ankara" ,@"İstanbul",nil]; //dummy data
     categoryArr=[[NSMutableArray alloc] initWithObjects:@"Ev", @"Etkinlik",nil];
+    
+    int btnSize = self.view.frame.size.width/4;
+
+    categoryBtn1 = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width/4)-(btnSize/2), (self.view.frame.size.height/2)-(btnSize/2), btnSize, btnSize)];
+    UIImage *btnImage = [UIImage imageNamed:@"ftab1.png"];
+    categoryBtn1.layer.cornerRadius = 30;
+    categoryBtn1.backgroundColor = LIGHT_BACKGROUND_COLOR;
+    [categoryBtn1 setImage:btnImage forState:UIControlStateNormal];
+    categoryBtn1.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    categoryBtn1.tag=0;
+    [categoryBtn1 addTarget:self action:@selector(categoryBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:categoryBtn1];
+
+    categoryBtn2 = [[UIButton alloc] initWithFrame:CGRectMake(3*(self.view.frame.size.width/4)-(btnSize/2), (self.view.frame.size.height/2)-(btnSize/2), btnSize, btnSize)];
+    UIImage *btnImage2 = [UIImage imageNamed:@"donation.png"];
+    categoryBtn2.layer.cornerRadius = 30;
+    categoryBtn2.backgroundColor = LIGHT_BACKGROUND_COLOR;
+    [categoryBtn2 setImage:btnImage2 forState:UIControlStateNormal];
+    categoryBtn2.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    categoryBtn2.tag=1;
+    [categoryBtn2 addTarget:self action:@selector(categoryBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:categoryBtn2];
+    
+}
+
+-(void) categoryBtnTapped:(id)sender{
+    UIButton *senderBtn = (UIButton *)sender;
+    if(senderBtn.tag == 0){ //category1Btn -> add home
+        addHomeView.hidden = NO;
+        [categoryBtn1 setSelected:YES];
+        categoryBtn1.hidden = YES;
+        categoryBtn2.hidden = YES;
+        [self setAddHomeScreen];
+    }else if(senderBtn.tag == 1){ //category2Btn -> add event
+        addEventView.hidden = NO;
+        [categoryBtn2 setSelected:YES];
+        categoryBtn1.hidden = YES;
+        categoryBtn2.hidden = YES;
+        [self setAddEventScreen];
+    }
+}
+
+-(void)setAddHomeScreen{
+    
+    double grid = GRID_LAYOUT_HEIGTH/2;
+    double spaceBetweenForms = GRID_LAYOUT_HEIGTH/4;
     
     scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,(3*GRID_LAYOUT_HEIGTH)/2-10, SCREEN_WIDTH, SCREEN_HEIGHT)];
     scrollView.scrollEnabled=YES;
     scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, (SCREEN_HEIGHT/4)+SCREEN_HEIGHT);
     scrollView.delegate=self;
     scrollView.backgroundColor = WHITE_COLOR;
-    [self.view addSubview:scrollView];
+    [addHomeView addSubview:scrollView];
     
-    cityBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, grid, SCREEN_WIDTH-20,grid)];
-    cityBtn.backgroundColor =LIGHT_BACKGROUND_COLOR;
-    cityBtn.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
-    [cityBtn setTitle:@"Şehir" forState:UIControlStateNormal];
-    [cityBtn setTitleColor:PLACEHOLDER_COLOR forState:UIControlStateNormal];
-    cityBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    cityBtn.tag = 0;
-    [cityBtn addTarget:self action:@selector(subFilterBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
-    [scrollView addSubview:cityBtn];
-    
-    categoryBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, (2*grid)+spaceBetweenForms, SCREEN_WIDTH-20, grid)];
-    categoryBtn.backgroundColor =LIGHT_BACKGROUND_COLOR;
-    categoryBtn.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
-    [categoryBtn setTitle:@"Kategori" forState:UIControlStateNormal];
-    [categoryBtn setTitleColor:PLACEHOLDER_COLOR forState:UIControlStateNormal];
-    categoryBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    categoryBtn.tag = 1;
-    [categoryBtn addTarget:self action:@selector(subFilterBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
-    [scrollView addSubview:categoryBtn];
-    
-    eventNameField = [[UITextField alloc] initWithFrame:CGRectMake(10, (3*grid)+2*spaceBetweenForms, SCREEN_WIDTH-20, grid)];
+    eventNameField = [[UITextField alloc] initWithFrame:CGRectMake(10, grid, SCREEN_WIDTH-20,grid)];
     eventNameField.backgroundColor =LIGHT_BACKGROUND_COLOR;
     eventNameField.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
     eventNameField.placeholder = @"İlan İsmi";
     [scrollView addSubview:eventNameField];
     
-    contactNumberField = [[UITextField alloc] initWithFrame:CGRectMake(10, (4*grid)+3*spaceBetweenForms, SCREEN_WIDTH-20, grid)];
-    contactNumberField.backgroundColor =LIGHT_BACKGROUND_COLOR;
-    contactNumberField.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
-    contactNumberField.placeholder = @"İletişim Numarası";
-    contactNumberField.keyboardType = UIKeyboardTypeNumberPad;
-    [scrollView addSubview:contactNumberField];
+    countryField = [[UITextField alloc] initWithFrame:CGRectMake(10, eventNameField.frame.origin.y+eventNameField.frame.size.height+grid, SCREEN_WIDTH-20,grid)];
+    countryField.backgroundColor =LIGHT_BACKGROUND_COLOR;
+    countryField.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
+    countryField.placeholder = @"Ülke(Varsayılan: Türkiye)";
+    [scrollView addSubview:countryField];
     
-    notesTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, (5*grid)+4*spaceBetweenForms, SCREEN_WIDTH-20, 4*grid)];
-    notesTextView.backgroundColor =LIGHT_BACKGROUND_COLOR;
-    notesTextView.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
-    [scrollView addSubview:notesTextView];
+    stateField = [[UITextField alloc] initWithFrame:CGRectMake(10, countryField.frame.origin.y+countryField.frame.size.height+grid, SCREEN_WIDTH-20,grid)];
+    stateField.backgroundColor =LIGHT_BACKGROUND_COLOR;
+    stateField.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
+    stateField.placeholder = @"Bölge";
+    [scrollView addSubview:stateField];
     
-    //datePicker UI
-    UIView *backViewForDatePicker = [[UIView alloc] initWithFrame:CGRectMake(10,(9*grid)+5*spaceBetweenForms, SCREEN_WIDTH-20, 3*grid+5)];
-    backViewForDatePicker.backgroundColor = BACKGROUND_COLOR;
-    [scrollView addSubview:backViewForDatePicker];
+    cityField = [[UITextField alloc] initWithFrame:CGRectMake(10, stateField.frame.origin.y+stateField.frame.size.height+grid, SCREEN_WIDTH-20,grid)];
+    cityField.backgroundColor =LIGHT_BACKGROUND_COLOR;
+    cityField.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
+    cityField.placeholder = @"Şehir";
+    [scrollView addSubview:cityField];
     
-    UILabel *datePickerTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, grid/2)];
-    datePickerTitle.text = @"Uygunluk tarihi";
-    datePickerTitle.textColor = PLACEHOLDER_COLOR;
-    [backViewForDatePicker addSubview:datePickerTitle];
-    
-    UILabel *beginDatePickerTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, grid/2+5, SCREEN_WIDTH/3, grid)];
-    beginDatePickerTitle.text = @"Başlangıç tarihi";
-    beginDatePickerTitle.textColor = PLACEHOLDER_COLOR;
-    [backViewForDatePicker addSubview:beginDatePickerTitle];
-    
-    UILabel *endDatePickerTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 2*grid, SCREEN_WIDTH/3, grid)];
-    endDatePickerTitle.text = @"Bitiş tarihi";
-    endDatePickerTitle.textColor = PLACEHOLDER_COLOR;
-    [backViewForDatePicker addSubview:endDatePickerTitle];
-    
-    beginDatePicker =[[UIDatePicker alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/3,grid/2+5, (SCREEN_WIDTH)/3, grid)];
-    beginDatePicker.layer.cornerRadius = 10;
-    [beginDatePicker addTarget:self action:@selector(displayDay:) forControlEvents:UIControlEventValueChanged];
-    [backViewForDatePicker addSubview:beginDatePicker];
-        
-    endDatePicker =[[UIDatePicker alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/3,2*grid, (SCREEN_WIDTH)/3, grid)];
-    endDatePicker.layer.cornerRadius = 10;
-    [endDatePicker addTarget:self action:@selector(displayDay:) forControlEvents:UIControlEventValueChanged];
-    [backViewForDatePicker addSubview:endDatePicker];
-    
-    //EmergencyBtn UI
-    UIView *backViewForEmergencyBtn = [[UIView alloc] initWithFrame:CGRectMake(10,(12*grid)+7*spaceBetweenForms, SCREEN_WIDTH/2-15, grid)];
-    backViewForEmergencyBtn.backgroundColor = LIGHT_BACKGROUND_COLOR;
-    [scrollView addSubview:backViewForEmergencyBtn];
-    
-    UILabel *emergencyBtnTitle = [[UILabel alloc] initWithFrame:CGRectMake(10,0, SCREEN_WIDTH-20/2, grid)];
-    emergencyBtnTitle.text = @"Aciliyet Durumu";
-    emergencyBtnTitle.textColor = PLACEHOLDER_COLOR;
-    [backViewForEmergencyBtn addSubview:emergencyBtnTitle];
-    
-    emergencyBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-grid/2-20, grid/2-grid/4, grid/2,grid/2)];
-    emergencyBtn.backgroundColor =WHITE_COLOR;
-    emergencyBtn.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
-    [emergencyBtn addTarget:self action:@selector(emergencyBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
-    [backViewForEmergencyBtn addSubview:emergencyBtn];
+    neighbourhoodField = [[UITextField alloc] initWithFrame:CGRectMake(10, cityField.frame.origin.y+cityField.frame.size.height+grid, SCREEN_WIDTH-20,grid)];
+    neighbourhoodField.backgroundColor =LIGHT_BACKGROUND_COLOR;
+    neighbourhoodField.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
+    neighbourhoodField.placeholder = @"Açık Adres";
+    [scrollView addSubview:neighbourhoodField];
     
     //isVisibleBtn UI
-    UIView *backViewForVisibleBtn = [[UIView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2+15,(12*grid)+7*spaceBetweenForms, SCREEN_WIDTH/2+grid, grid)];
+    UIView *backViewForVisibleBtn = [[UIView alloc] initWithFrame:CGRectMake(10,neighbourhoodField.frame.origin.y+neighbourhoodField.frame.size.height+grid, SCREEN_WIDTH/2+2*grid, grid)];
     backViewForVisibleBtn.backgroundColor = LIGHT_BACKGROUND_COLOR;
     [scrollView addSubview:backViewForVisibleBtn];
 
@@ -129,41 +127,31 @@
     visibleBtnTitle.textColor = PLACEHOLDER_COLOR;
     [backViewForVisibleBtn addSubview:visibleBtnTitle];
 
-    isVisibleBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2, grid/2-grid/4, grid/2,grid/2)];
+    isVisibleBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2+grid/2, grid/2-grid/4, grid/2,grid/2)];
     isVisibleBtn.backgroundColor =WHITE_COLOR;
     isVisibleBtn.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
-    [isVisibleBtn addTarget:self action:@selector(emergencyBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
+    isVisibleBtn.tag=0;
+    [isVisibleBtn addTarget:self action:@selector(checkBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
     [backViewForVisibleBtn addSubview:isVisibleBtn];
     
-//    double photoImageViewSize = ((SCREEN_WIDTH -30)/2)* .75;
-//    photo1View = [[UIImageView alloc] initWithFrame:CGRectMake(10, (12*grid)+7*spaceBetweenForms, photoImageViewSize, photoImageViewSize)];
-//    photo1View.backgroundColor =LIGHT_BACKGROUND_COLOR;
-//    photo1View.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
-//    [scrollView addSubview:photo1View];
-//
-//    photo2View = [[UIImageView alloc] initWithFrame:CGRectMake(20+photoImageViewSize,(12*grid)+7*spaceBetweenForms, photoImageViewSize, photoImageViewSize)];
-//    photo2View.backgroundColor =LIGHT_BACKGROUND_COLOR;
-//    photo2View.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
-//    [scrollView addSubview:photo2View];
-    
+    //isPetAllowed UI
+    UIView *backViewForPetBtn = [[UIView alloc] initWithFrame:CGRectMake(10,backViewForVisibleBtn.frame.origin.y+backViewForVisibleBtn.frame.size.height+grid, SCREEN_WIDTH/2+2*grid, grid)];
+    backViewForPetBtn.backgroundColor = LIGHT_BACKGROUND_COLOR;
+    [scrollView addSubview:backViewForPetBtn];
 
+    UILabel *petBtnTitle = [[UILabel alloc] initWithFrame:CGRectMake(10,0, SCREEN_WIDTH-20/2, grid)];
+    petBtnTitle.text = @"Evcil Hayvan Kabul Edilir";
+    petBtnTitle.textColor = PLACEHOLDER_COLOR;
+    [backViewForPetBtn addSubview:petBtnTitle];
+
+    isPetAllowed = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2+grid/2, grid/2-grid/4, grid/2,grid/2)];
+    isPetAllowed.backgroundColor =WHITE_COLOR;
+    isPetAllowed.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
+    isPetAllowed.tag=1;
+    [isPetAllowed addTarget:self action:@selector(checkBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [backViewForPetBtn addSubview:isPetAllowed];
     
-    picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-GRID_LAYOUT*4, SCREEN_WIDTH, GRID_LAYOUT*4)];
-    picker.backgroundColor = BACKGROUND_COLOR;
-    picker.layer.cornerRadius = 10;
-    picker.hidden = YES;
-    [picker setDataSource: self];
-    [picker setDelegate: self];
-    pickerBtn =[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-100, picker.frame.origin.y, 100, 20)];
-    pickerBtn.titleLabel.font = BODY_FONT;
-    [pickerBtn setTitleColor:COLOR_ONE forState:UIControlStateNormal];
-    [pickerBtn setTitle:@"Tamam" forState:UIControlStateNormal];
-    pickerBtn.hidden = YES;
-    [pickerBtn addTarget:self action:@selector(pickerBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
-    [scrollView addSubview:picker];
-    [scrollView addSubview:pickerBtn];
-    
-    saveBtn = [[UIButton alloc] initWithFrame:CGRectMake(2*GRID_LAYOUT, (14*grid)+7*spaceBetweenForms, 4*GRID_LAYOUT, GRID_LAYOUT_HEIGTH/2)];
+    saveBtn = [[UIButton alloc] initWithFrame:CGRectMake(2*GRID_LAYOUT, backViewForPetBtn.frame.origin.y+backViewForPetBtn.frame.size.height+grid, 4*GRID_LAYOUT, GRID_LAYOUT_HEIGTH/2)];
     [saveBtn setTitle:@"Kaydet" forState:UIControlStateNormal];
     [saveBtn setTitleColor:BODY_TEXT_COLOR forState:UIControlStateNormal];
     [saveBtn.titleLabel setFont:TITLE_FONT_SMALL];
@@ -172,6 +160,138 @@
     [saveBtn addTarget:self action:@selector(saveBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:saveBtn];
 }
+-(void)setAddEventScreen{
+    
+    double grid = GRID_LAYOUT_HEIGTH/2;
+    
+    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,(3*GRID_LAYOUT_HEIGTH)/2-10, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    scrollView.scrollEnabled=YES;
+    scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, 2*SCREEN_HEIGHT);
+    scrollView.delegate=self;
+    scrollView.backgroundColor = WHITE_COLOR;
+    [addEventView addSubview:scrollView];
+    
+    eventNameField = [[UITextField alloc] initWithFrame:CGRectMake(10, grid, SCREEN_WIDTH-20,grid)];
+    eventNameField.backgroundColor =LIGHT_BACKGROUND_COLOR;
+    eventNameField.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
+    eventNameField.placeholder = @"İlan İsmi";
+    [scrollView addSubview:eventNameField];
+    
+    countryField = [[UITextField alloc] initWithFrame:CGRectMake(10, eventNameField.frame.origin.y+eventNameField.frame.size.height+grid, SCREEN_WIDTH-20,grid)];
+    countryField.backgroundColor =LIGHT_BACKGROUND_COLOR;
+    countryField.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
+    countryField.placeholder = @"Ülke(Varsayılan: Türkiye)";
+    [scrollView addSubview:countryField];
+    
+    stateField = [[UITextField alloc] initWithFrame:CGRectMake(10, countryField.frame.origin.y+countryField.frame.size.height+grid, SCREEN_WIDTH-20,grid)];
+    stateField.backgroundColor =LIGHT_BACKGROUND_COLOR;
+    stateField.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
+    stateField.placeholder = @"Bölge";
+    [scrollView addSubview:stateField];
+    
+    cityField = [[UITextField alloc] initWithFrame:CGRectMake(10, stateField.frame.origin.y+stateField.frame.size.height+grid, SCREEN_WIDTH-20,grid)];
+    cityField.backgroundColor =LIGHT_BACKGROUND_COLOR;
+    cityField.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
+    cityField.placeholder = @"Şehir";
+    [scrollView addSubview:cityField];
+    
+    neighbourhoodField = [[UITextField alloc] initWithFrame:CGRectMake(10, cityField.frame.origin.y+cityField.frame.size.height+grid, SCREEN_WIDTH-20,grid)];
+    neighbourhoodField.backgroundColor =LIGHT_BACKGROUND_COLOR;
+    neighbourhoodField.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
+    neighbourhoodField.placeholder = @"Açık Adres";
+    [scrollView addSubview:neighbourhoodField];
+    
+    //datePicker UI
+    UIView *backViewForDatePicker = [[UIView alloc] initWithFrame:CGRectMake(10, neighbourhoodField.frame.origin.y+neighbourhoodField.frame.size.height+grid, SCREEN_WIDTH-20,3*grid+grid/2)];
+    backViewForDatePicker.backgroundColor = BACKGROUND_COLOR;
+    [scrollView addSubview:backViewForDatePicker];
+
+    UILabel *datePickerTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, grid/2)];
+    datePickerTitle.text = @"Uygunluk tarihi";
+    datePickerTitle.textColor = PLACEHOLDER_COLOR;
+    [backViewForDatePicker addSubview:datePickerTitle];
+
+    UILabel *beginDatePickerTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, grid/2+5, SCREEN_WIDTH/3, grid)];
+    beginDatePickerTitle.text = @"Başlangıç tarihi";
+    beginDatePickerTitle.textColor = PLACEHOLDER_COLOR;
+    [backViewForDatePicker addSubview:beginDatePickerTitle];
+
+    UILabel *endDatePickerTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 2*grid, SCREEN_WIDTH/3, grid)];
+    endDatePickerTitle.text = @"Bitiş tarihi";
+    endDatePickerTitle.textColor = PLACEHOLDER_COLOR;
+    [backViewForDatePicker addSubview:endDatePickerTitle];
+
+    beginDatePicker =[[UIDatePicker alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/3,grid/2+5, (SCREEN_WIDTH)/3, grid)];
+    beginDatePicker.layer.cornerRadius = 10;
+    [beginDatePicker addTarget:self action:@selector(displayDay:) forControlEvents:UIControlEventValueChanged];
+    [backViewForDatePicker addSubview:beginDatePicker];
+
+    endDatePicker =[[UIDatePicker alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/3,2*grid, (SCREEN_WIDTH)/3, grid)];
+    endDatePicker.layer.cornerRadius = 10;
+    [endDatePicker addTarget:self action:@selector(displayDay:) forControlEvents:UIControlEventValueChanged];
+    [backViewForDatePicker addSubview:endDatePicker];
+    
+    //isEmergencyBtn UI
+    UIView *backViewForEmergencyBtn = [[UIView alloc] initWithFrame:CGRectMake(10,backViewForDatePicker.frame.origin.y+backViewForDatePicker.frame.size.height+grid, SCREEN_WIDTH/2+2*grid, grid)];
+    backViewForEmergencyBtn.backgroundColor = LIGHT_BACKGROUND_COLOR;
+    [scrollView addSubview:backViewForEmergencyBtn];
+
+    UILabel *emergencyBtnTitle = [[UILabel alloc] initWithFrame:CGRectMake(10,0, SCREEN_WIDTH-20/2, grid)];
+    emergencyBtnTitle.text = @"Görünürlük Durumu";
+    emergencyBtnTitle.textColor = PLACEHOLDER_COLOR;
+    [backViewForEmergencyBtn addSubview:emergencyBtnTitle];
+
+    emergencyBtn = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2+grid/2, grid/2-grid/4, grid/2,grid/2)];
+    emergencyBtn.backgroundColor =WHITE_COLOR;
+    emergencyBtn.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
+    emergencyBtn.tag=2;
+    [emergencyBtn addTarget:self action:@selector(checkBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [backViewForEmergencyBtn addSubview:emergencyBtn];
+
+    notesTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, backViewForEmergencyBtn.frame.origin.y+backViewForEmergencyBtn.frame.size.height+grid, SCREEN_WIDTH-20, 4*grid)];
+    notesTextView.backgroundColor =LIGHT_BACKGROUND_COLOR;
+    notesTextView.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
+    [scrollView addSubview:notesTextView];
+    
+    currencyField = [[UITextField alloc] initWithFrame:CGRectMake(10, notesTextView.frame.origin.y+notesTextView.frame.size.height+grid, SCREEN_WIDTH-20,grid)];
+    currencyField.backgroundColor =LIGHT_BACKGROUND_COLOR;
+    currencyField.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
+    currencyField.placeholder = @"Bağış Para Birimi (Varsayılan: TL)";
+    [scrollView addSubview:currencyField];
+    
+    amountField = [[UITextField alloc] initWithFrame:CGRectMake(10, currencyField.frame.origin.y+currencyField.frame.size.height+grid, SCREEN_WIDTH-20,grid)];
+    amountField.backgroundColor =LIGHT_BACKGROUND_COLOR;
+    amountField.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
+    amountField.placeholder = @"Bağış Alt Miktarı";
+    [scrollView addSubview:amountField];
+    
+    saveBtn = [[UIButton alloc] initWithFrame:CGRectMake(2*GRID_LAYOUT, amountField.frame.origin.y+amountField.frame.size.height+grid, 4*GRID_LAYOUT, GRID_LAYOUT_HEIGTH/2)];
+    [saveBtn setTitle:@"Kaydet" forState:UIControlStateNormal];
+    [saveBtn setTitleColor:BODY_TEXT_COLOR forState:UIControlStateNormal];
+    [saveBtn.titleLabel setFont:TITLE_FONT_SMALL];
+    saveBtn.backgroundColor = COLOR_ONE;
+    saveBtn.layer.cornerRadius = GRID_LAYOUT_HEIGTH/10;
+    [saveBtn addTarget:self action:@selector(saveBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [scrollView addSubview:saveBtn];
+    
+//
+//    picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-GRID_LAYOUT*4, SCREEN_WIDTH, GRID_LAYOUT*4)];
+//    picker.backgroundColor = BACKGROUND_COLOR;
+//    picker.layer.cornerRadius = 10;
+//    picker.hidden = YES;
+//    [picker setDataSource: self];
+//    [picker setDelegate: self];
+//    pickerBtn =[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-100, picker.frame.origin.y, 100, 20)];
+//    pickerBtn.titleLabel.font = BODY_FONT;
+//    [pickerBtn setTitleColor:COLOR_ONE forState:UIControlStateNormal];
+//    [pickerBtn setTitle:@"Tamam" forState:UIControlStateNormal];
+//    pickerBtn.hidden = YES;
+//    [pickerBtn addTarget:self action:@selector(pickerBtnTapped:) forControlEvents:UIControlEventTouchUpInside];
+//    [scrollView addSubview:picker];
+//    [scrollView addSubview:pickerBtn];
+}
+
+
 
 #pragma mark - Picker View Activity Handlers
 
@@ -185,6 +305,7 @@
         [picker reloadAllComponents];
     }
 }
+
 
 - (void)pickerView:(UIPickerView *)pV didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     pickerSelected=(int)row;
@@ -234,7 +355,7 @@
 
 #pragma mark - Button Activity Handlers
 
-- (void)emergencyBtnTapped:(id)sender {
+- (void)checkBtnTapped:(id)sender {
     if(!emergencyBtn.selected){emergencyBtn.backgroundColor = [UIColor blackColor];}
     if(emergencyBtn.selected){emergencyBtn.backgroundColor = [UIColor whiteColor];}
     emergencyBtn.selected = !emergencyBtn.selected;
@@ -353,13 +474,13 @@
         //home
         NSDictionary *paramsForHome = @{@"home_name": eventNameField.text,
                    @"isVisible": @(isVisibleBtn.isSelected),
-                   @"country": @"Turkey",
-                   @"state": @"ankara",
-                   @"city":@"merkez",
-                   @"neighbourhood":@"2093.sok",
+                   @"country": countryField.text,
+                   @"state": stateField.text,
+                   @"city":cityField.text,
+                   @"neighbourhood":neighbourhoodField.text,
                    @"latitude": @"42.2548",
                    @"longitude":@"34.5897",
-                   @"is_pets_allowed": @(emergencyBtn.isSelected)};
+                   @"is_pets_allowed": @(isPetAllowed.isSelected)};
         [[ViewPresenter sharedManager] addHome:paramsForHome];
     }else{
         //event
@@ -369,14 +490,14 @@
                    @"title": eventNameField.text,
                    @"description": notesTextView.text,
                    @"is_emergency": @(emergencyBtn.isSelected),
-                   @"country": @"Turkey",
-                   @"state": @"ankara",
-                   @"city":@"merkez",
-                   @"neighbourhood":@"2093.sok",
+                   @"country": countryField.text,
+                   @"state": stateField.text,
+                   @"city":cityField.text,
+                   @"neighbourhood":neighbourhoodField.text,
                    @"latitude": @"42.2548",
                    @"longitude":@"34.5897",
-                   @"currency": @"TL",
-                   @"amount": @"300"};
+                   @"currency":currencyField.text,
+                   @"amount": amountField.text};
         [[ViewPresenter sharedManager] addEvent:paramsForEvent];
     }
     

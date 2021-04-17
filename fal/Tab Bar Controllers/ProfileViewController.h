@@ -12,10 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ProfileViewController : ViewController<UITableViewDelegate,UITableViewDataSource,UIPickerViewDelegate,UIPickerViewDataSource>{
     UITableView *table;
-    NSDictionary *dataDic;
+    NSArray *dataArr;
+    UIButton *settingsBtn;
 }
 @property (nonatomic, retain) UITableView *table;
-@property (nonatomic, retain) NSDictionary *dataDic;
+@property (nonatomic, retain) NSArray *dataArr;
+@property (nonatomic, retain) UIButton *settingsBtn;
 
 @end
 

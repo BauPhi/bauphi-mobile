@@ -14,6 +14,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AddEventViewController : ViewController<UIPickerViewDelegate,UIPickerViewDataSource,UIImagePickerControllerDelegate,QBImagePickerControllerDelegate,UIScrollViewDelegate>{
+    UIView *addHomeView;
+    UIView *addEventView;
     UIView *viewCamera;
     UIScrollView *scrollView;
     UIDatePicker *beginDatePicker;
@@ -23,14 +25,23 @@ NS_ASSUME_NONNULL_BEGIN
     UIImageView *photo1View;
     UIImageView *photo2View;
     UIPickerView *picker;
+    UIButton *categoryBtn1;
+    UIButton *categoryBtn2;
     UIButton *cityBtn;
     UIButton *categoryBtn;
     UIButton *pickerBtn;
     UIButton *emergencyBtn;
     UIButton *isVisibleBtn;
+    UIButton *isPetAllowed;
     UIButton *saveBtn;
     UITextField *eventNameField;
     UITextField *contactNumberField;
+    UITextField *countryField;
+    UITextField *stateField;
+    UITextField *cityField;
+    UITextField *neighbourhoodField;
+    UITextField *currencyField;
+    UITextField *amountField;
     UITextView *notesTextView;
     NSMutableArray *citiesArr;
     NSMutableArray *categoryArr;
@@ -43,6 +54,8 @@ NS_ASSUME_NONNULL_BEGIN
     int subFilterBtnTag;
 }
 @property (nonatomic, retain) UIView *viewCamera;
+@property (nonatomic, retain) UIView *addHomeView;
+@property (nonatomic, retain) UIView *addEventView;
 @property (nonatomic, retain) UIDatePicker *beginDatePicker;
 @property (nonatomic, retain) UIDatePicker *endDatePicker;
 @property (nonatomic, retain) UIScrollView *scrollView;
@@ -55,6 +68,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, retain) UIButton *emergencyBtn;
 @property (nonatomic, retain) UIButton *isVisibleBtn;
 @property (nonatomic, retain) UIButton *saveBtn;
+@property (nonatomic, retain) UIButton *categoryBtn1;
+@property (nonatomic, retain) UIButton *categoryBtn2;
+@property (nonatomic, retain) UIButton *isPetAllowed;
 @property (nonatomic, retain) UITextField *eventNameField;
 @property (nonatomic, retain) UITextField *contactNumberField;
 @property (nonatomic, retain) UITextView *notesTextView;
